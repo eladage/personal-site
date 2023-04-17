@@ -2,8 +2,24 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx}'],
   darkMode: 'class',
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography', require('@tailwindcss/aspect-ratio')),
+  ],
   theme: {
+    extend: {
+      fontFamily: {
+        mono: [
+          'ui-monospace',
+          'SFMono-Regular',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace',
+        ],
+      },
+    },
     fontSize: {
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],
       sm: ['0.875rem', { lineHeight: '1.5rem' }],

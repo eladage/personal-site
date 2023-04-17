@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import deskImage from '@/images/desk.jpg'
 import kbImage from '@/images/kb.jpg'
 
 function ToolsSection({ children, ...props }) {

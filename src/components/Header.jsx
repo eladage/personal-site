@@ -124,6 +124,7 @@ function MobileNavigation(props) {
                 <MobileNavItem href="/">Home</MobileNavItem>
                 <MobileNavItem href="/about">About</MobileNavItem>
                 <MobileNavItem href="/articles">Blog</MobileNavItem>
+                <MobileNavItem href="/photos">Photos</MobileNavItem>
                 <MobileNavItem href="/desk">Desk</MobileNavItem>
               </ul>
             </nav>
@@ -164,6 +165,7 @@ function DesktopNavigation(props) {
         <NavItem href="/">Home</NavItem>
         <NavItem href="/about">About</NavItem>
         <NavItem href="/articles">Blog</NavItem>
+        <NavItem href="/photos">Photos</NavItem>
         <NavItem href="/desk">Desk</NavItem>
       </ul>
     </nav>
@@ -231,16 +233,21 @@ function Avatar({ large = false, className, ...props }) {
       className={clsx(className, 'pointer-events-auto')}
       {...props}
     >
-      <Image
-        src={avatarImage}
-        alt=""
-        sizes={large ? '4rem' : '2.25rem'}
-        className={clsx(
-          'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
-          large ? 'h-16 w-16' : 'h-9 w-9'
-        )}
-        priority
-      />
+      <div className="flex items-center gap-4">
+        <Image
+          src={avatarImage}
+          alt=""
+          sizes={large ? '4rem' : '2.25rem'}
+          className={clsx(
+            'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
+            large ? 'h-16 w-16' : 'h-9 w-9'
+          )}
+          priority
+        />
+        <h1 className="font-mono text-2xl text-zinc-600 dark:text-zinc-400">
+          eriic.dev
+        </h1>
+      </div>
     </Link>
   )
 }

@@ -287,13 +287,13 @@ export default function Home({ articles }) {
         <title>Eric Ladage - Software Engineer</title>
         <meta
           name="description"
-          content="I’m Eric, this is my narcissistic corner of the internet."
+          content="👋 Hey I’m Eric and this is my narcissistic corner of the internet."
         />
       </Head>
 
       <Container className="mt-4 flex flex-col items-center">
-        <h1 className="mb-4 select-none text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-          ✨I like some stuff✨
+        <h1 className="mb-4 mt-16 select-none text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+          ✨ I like some stuff ✨
         </h1>
       </Container>
       <Likes />
@@ -302,7 +302,7 @@ export default function Home({ articles }) {
       <Container className="mt-9">
         <div className="m-auto flex max-w-2xl flex-col items-center">
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Eric and this is my narcissistic corner of the internet.
+            👋 Hey I’m Eric and this is my narcissistic corner of the internet.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
