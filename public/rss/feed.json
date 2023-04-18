@@ -1,0 +1,34 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Eric Ladage",
+    "feed_url": "undefined/rss/feed.json",
+    "description": "Your blog description",
+    "icon": "undefined/favicon.ico",
+    "author": {
+        "name": "Eric Ladage"
+    },
+    "items": [
+        {
+            "id": "undefined/articles/placeholder",
+            "content_html": "<h2>Typescript</h2>\n<pre class=\"language-tsx\"><code class=\"language-tsx\"><span class=\"token keyword\">interface</span> <span class=\"token class-name\"><span class=\"token maybe-class-name\">TestProps</span></span> <span class=\"token punctuation\">{</span>\n  test<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span>\n<span class=\"token punctuation\">}</span>\n\n<span class=\"token keyword module\">export</span> <span class=\"token keyword module\">default</span> <span class=\"token keyword\">function</span> <span class=\"token function\"><span class=\"token maybe-class-name\">Test</span></span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span> test <span class=\"token punctuation\">}</span><span class=\"token operator\">:</span> <span class=\"token maybe-class-name\">TestProps</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword control-flow\">return</span> <span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;</span>div</span><span class=\"token punctuation\">&gt;</span></span><span class=\"token punctuation\">{</span>test<span class=\"token punctuation\">}</span><span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;/</span>div</span><span class=\"token punctuation\">&gt;</span></span>\n<span class=\"token punctuation\">}</span>\n</code></pre>\n<h2>Lorem Ipsum</h2>\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, nisl a\nultricies lacinia, nunc nisl aliquam nisl, eget aliquam nisl nisl sit amet ante.</p>\n<h2>Lethaei Pindumve me quae dinumerat Pavor</h2>\n<p>Idem se saxa fata pollentibus geminos; quos pedibus. Est urnis Herses omnes nec\ndivite: et ille illa furit sim verbis Cyllenius.</p>\n<ol>\n<li>Captus inpleverunt collo</li>\n<li>Nec nam placebant</li>\n<li>Siquos vulgus</li>\n<li>Dictis carissime fugae</li>\n<li>A tacitos nulla viginti</li>\n</ol>\n<p>Ungues fistula annoso, ille addit linoque motatque uberior verso\n<a href=\"#\">rubuerunt</a> confine desuetaque. <em>Sanguine</em> anteit\nemerguntque expugnacior est pennas iniqui ecce <strong>haeret</strong> genus: peiora imagine\nfossas Cephisos formosa! Refugitque amata <a href=\"#\">refelli</a>\nsupplex. Summa brevis vetuere tenebas, hostes vetantis, suppressit, arreptum\nregna. Postquam conpescit iuvenis habet corpus, et erratica, perdere, tot mota\nars talis.</p>\n<p>Sit volat naturam; motu Cancri. Erat pro simul quae valuit quoque timorem quam\nproelia: illo patrio <em>esse summus</em>, enim sua serpentibus, Hyleusque. Est coniuge\nrecuso; refert Coroniden ignotos manat, adfectu.</p>",
+            "url": "undefined/articles/placeholder",
+            "title": "Placeholder Article",
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, nisl a ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nisl nisl sit amet ante. Sed auctor, nisl a ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nisl nisl sit amet ante.",
+            "date_modified": "2023-04-20T00:00:00.000Z",
+            "author": {
+                "name": "Eric Ladage"
+            }
+        },
+        {
+            "id": "undefined/articles/placeholder-with-extras",
+            "content_html": "<p>This is where some cool article with like images and whatever would be...</p>\n<img alt=\"\" loading=\"lazy\" width=\"498\" height=\"373\" decoding=\"async\" data-nimg=\"1\" style=\"color:transparent\" srcSet=\"/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fif-i-had-one.dc039fb9.gif&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fif-i-had-one.dc039fb9.gif&amp;w=1080&amp;q=75 2x\" src=\"/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fif-i-had-one.dc039fb9.gif&amp;w=1080&amp;q=75\"/>\n<h2>Sermone fata</h2>\n<p>Lorem markdownum, bracchia in redibam! Terque unda puppi nec, linguae posterior\nin utraque respicere candidus Mimasque formae; quae conantem cervice. Parcite\nvariatus, redolentia adeunt. Tyrioque dies, naufraga sua adit partibus celanda\ntorquere temptata, erit maneat et ramos, <a href=\"#\">iam</a> ait dominari\npotitus! Tibi litora matremque fumantia condi radicibus opusque.</p>\n<p>Deus feram verumque, fecit, ira tamen, terras per alienae victum. Mutantur\nlevitate quas ubi arcum ripas oculos abest. Adest <a href=\"#\">commissaque\nvictae</a> in gemitus nectareis ire diva\ndotibus ora, et findi huic invenit; fatis? Fractaque dare superinposita\nnimiumque simulatoremque sanguine, at voce aestibus diu! Quid veterum hausit tu\nnil utinam paternos ima, commentaque.</p>",
+            "url": "undefined/articles/placeholder-with-extras",
+            "title": "Placeholder Article with IMAGES",
+            "summary": "Lorem ipsum whatever man",
+            "date_modified": "2022-12-31T00:00:00.000Z",
+            "author": {
+                "name": "Eric Ladage"
+            }
+        }
+    ]
+}

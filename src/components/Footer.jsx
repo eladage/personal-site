@@ -1,6 +1,8 @@
 import Link from 'next/link'
 
 import { Container } from '@/components/Container'
+import ClippyButton from './ClippyButton.mjs'
+import ConfettiWrapper from './ConfettiWrapper'
 
 function NavLink({ href, children }) {
   return (
@@ -26,10 +28,17 @@ export function Footer() {
                 <NavLink href="/articles">Blog</NavLink>
                 <NavLink href="/desk">Desk</NavLink>
               </div>
-              <p className="text-sm text-zinc-400 dark:text-zinc-500">
-                &copy; {new Date().getFullYear()} Eric Ladage. All rights
-                reserved.
-              </p>
+              <div>
+                <p className="text-sm text-zinc-400 dark:text-zinc-500">
+                  &copy; {new Date().getFullYear()} Eric Ladage. All rights
+                  reserved.
+                </p>
+                <div className="mt-4">
+                  <ConfettiWrapper>
+                    <ClippyButton title="Need Help?" />
+                  </ConfettiWrapper>
+                </div>
+              </div>
             </div>
           </Container.Inner>
         </div>

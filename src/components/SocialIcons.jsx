@@ -34,3 +34,23 @@ export function LinkedInIcon(props) {
     </svg>
   )
 }
+
+export function EmailIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 1.99 2H20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+    </svg>
+  )
+}
+
+export default function SocialIcons() {
+  return (
+    <div className="social-icons">
+      <TwitterIcon />
+      <InstagramIcon />
+      <GitHubIcon />
+      <LinkedInIcon />
+      <EmailIcon />
+    </div>
+  )
+}

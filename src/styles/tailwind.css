@@ -12,3 +12,16 @@
     display: none; /* For Chrome, Safari, and Opera */
   }
 }
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+}
+
+.wiggle:hover {
+  animation: wiggle 300ms alternate infinite ease-in-out;
+}

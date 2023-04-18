@@ -35,9 +35,6 @@ export default function Uses() {
         <meta name="description" content="My desk" />
       </Head>
       <SimpleLayout title="My Desk">
-        <div className="m-auto mb-16 flex aspect-[21/7] flex-none items-center overflow-hidden rounded-xl bg-zinc-100">
-          <Image src={kbImage} alt="My desk" />
-        </div>
         <div className="space-y-10">
           <ToolsSection title="Workstation">
             <Tool title="Mac Studio ULTRA">
@@ -117,6 +114,9 @@ export default function Uses() {
           * not all are languages but I don’t know what else to call this bucket
           ok
         </p>
+        <div className="mt-16 flex aspect-[21/7] flex-none items-center overflow-hidden rounded-xl bg-zinc-100">
+          <Image src={kbImage} alt="My desk" />
+        </div>
       </SimpleLayout>
     </>
   )

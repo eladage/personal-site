@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,16 +6,14 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
+import ConfettiWrapper from '@/components/ConfettiWrapper'
 import {
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
+  EmailIcon,
 } from '@/components/SocialIcons'
-import logoKU from '@/images/logos/ku.png'
-import logoSW from '@/images/logos/sw.png'
-import logoCerner from '@/images/logos/cerner.png'
-import logoCRL from '@/images/logos/crl.png'
-import logoJJ from '@/images/logos/jj.png'
+
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -25,6 +22,7 @@ import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
+import RESUME from '@/constants/RESUME'
 
 function MailIcon(props) {
   return (
@@ -138,47 +136,6 @@ function Newsletter() {
 }
 
 function Resume() {
-  let resume = [
-    {
-      company: 'University of Kansas',
-      title: 'Fullstack Contract Work',
-      logo: logoKU,
-      start: '2021',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear(),
-      },
-    },
-    {
-      company: 'Smart Warehousing',
-      title: 'Senior Software Engineer',
-      logo: logoSW,
-      start: '2021',
-      end: '2022',
-    },
-    {
-      company: 'Cerner',
-      title: 'Software Engineer',
-      logo: logoCerner,
-      start: '2018',
-      end: '2021',
-    },
-    {
-      company: 'CRL',
-      title: 'Business Intelligence Developer',
-      logo: logoCRL,
-      start: '2016',
-      end: '2018',
-    },
-    {
-      company: "Jimmy John's",
-      title: 'Artisanal Sandwich Transporter',
-      logo: logoJJ,
-      start: '2012',
-      end: '2016',
-    },
-  ]
-
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -186,7 +143,7 @@ function Resume() {
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
+        {RESUME.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
@@ -229,25 +186,30 @@ function Resume() {
 
 function Likes() {
   let likes = [
-    '👨‍💻 dev',
-    '🎸 music',
-    '📸 photos',
-    '🚲 bikes',
-    '🎨 art',
-    '🧗‍♂️ climbing',
+    { title: '👨‍💻 dev', link: '/desk' },
+    { title: '🎸 music', link: '' },
+    { title: '📸 photos', link: '/photos' },
+    { title: '🚲 bikes', link: '' },
+    { title: '🎨 art', link: '' },
+    { title: '🧗‍♂️ climbing', link: '' },
   ]
 
   return (
     <div className="-my-4 mx-4 flex flex-wrap items-center justify-center gap-5 overflow-hidden py-4 md:flex-row md:flex-nowrap ">
       {likes.map((like, idx) => (
-        <h1
-          key={like}
-          className={`${
-            idx % 2 ? '-' : ''
-          }rotate-2 select-none rounded-xl bg-slate-50 p-4 text-center text-4xl font-bold tracking-tight text-zinc-800 shadow-lg transition-transform duration-300 ease-in-out hover:rotate-0 dark:bg-zinc-800 dark:text-zinc-100`}
+        <Link
+          href={like.link}
+          key={like.title}
+          className={`${!like.link ? 'pointer-events-none' : ''}`}
         >
-          {like}
-        </h1>
+          <h1
+            className={`${
+              idx % 2 ? '-' : ''
+            }rotate-2 wiggle select-none rounded-xl bg-slate-50 p-4 text-center text-4xl font-bold tracking-tight text-zinc-800 shadow-lg transition-transform duration-300 ease-in-out  dark:bg-zinc-800 dark:text-zinc-100`}
+          >
+            {like.title}
+          </h1>
+        </Link>
       ))}
     </div>
   )
@@ -292,9 +254,11 @@ export default function Home({ articles }) {
       </Head>
 
       <Container className="mt-4 flex flex-col items-center">
-        <h1 className="mb-4 mt-16 select-none text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-          ✨ I like some stuff ✨
-        </h1>
+        <ConfettiWrapper>
+          <h1 className="mb-4 mt-16 select-none text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+            ✨ I like some stuff ✨
+          </h1>
+        </ConfettiWrapper>
       </Container>
       <Likes />
       <hr className="m-auto mb-8 mt-16 max-w-lg border-t-2 border-zinc-100 dark:border-zinc-800" />
@@ -319,6 +283,11 @@ export default function Home({ articles }) {
               href="https://www.linkedin.com/in/eric-ladage-b3050a132/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
+            />
+            <SocialLink
+              href="mailto:eladage@gmail.com"
+              aria-label="Email Me"
+              icon={EmailIcon}
             />
           </div>
         </div>
