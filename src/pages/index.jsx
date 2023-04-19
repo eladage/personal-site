@@ -265,7 +265,7 @@ export default function Home({ articles }) {
         </ConfettiWrapper>
       </Container>
       <Likes />
-      <hr className="m-auto mb-8 mt-16 max-w-lg border-t-2 border-zinc-100 dark:border-zinc-800" />
+      <hr className="m-auto mt-16 max-w-lg border-t-2 border-zinc-100 dark:border-zinc-800" />
       <Photos />
       <Container className="mt-9">
         <div className="m-auto flex max-w-2xl flex-col items-center">
