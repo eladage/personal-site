@@ -81,7 +81,7 @@ export default function About() {
                 Follow on GitHub
               </SocialLink>
               <SocialLink
-                href="https://www.linkedin.com/in/eric-ladage-b3050a132/"
+                href="https://www.linkedin.com/in/eric-ladage/"
                 icon={LinkedInIcon}
                 className="mt-4"
               >

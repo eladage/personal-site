@@ -176,7 +176,11 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
+      <Button
+        href={'/LadageResume2023.pages'}
+        variant="secondary"
+        className="group mt-6 w-full"
+      >
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
@@ -268,7 +272,23 @@ export default function Home({ articles }) {
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             👋 Hey I’m Eric and this is my narcissistic corner of the internet.
           </p>
+          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+            This site is still a work in progress but slowly getting there as
+            time allows.
+          </p>
+          <p className="text-base text-zinc-600 dark:text-zinc-400">
+            Currently doing fullstack contract work but on the lookout for a
+            good longtime fit.
+          </p>
+          <p className="text-base text-zinc-600 dark:text-zinc-400">
+            Feel free to reach out to any of my socials below!
+          </p>
           <div className="mt-6 flex gap-6">
+            <SocialLink
+              href="mailto:eladage@gmail.com"
+              aria-label="Email Me"
+              icon={EmailIcon}
+            />
             <SocialLink
               href="https://instagram.com/eladage"
               aria-label="Follow on Instagram"
@@ -280,14 +300,9 @@ export default function Home({ articles }) {
               icon={GitHubIcon}
             />
             <SocialLink
-              href="https://www.linkedin.com/in/eric-ladage-b3050a132/"
+              href="https://www.linkedin.com/in/eric-ladage/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
-            />
-            <SocialLink
-              href="mailto:eladage@gmail.com"
-              aria-label="Email Me"
-              icon={EmailIcon}
             />
           </div>
         </div>
