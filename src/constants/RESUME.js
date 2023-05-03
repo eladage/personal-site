@@ -9,7 +9,7 @@ const RESUME = [
     company: 'University of Kansas',
     title: 'Fullstack Contract Work',
     logo: logoKU,
-    start: '2021',
+    start: '2022',
     end: {
       label: 'Present',
       dateTime: new Date().getFullYear(),

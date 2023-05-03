@@ -19,6 +19,15 @@ module.exports = {
           'monospace',
         ],
       },
+      keyframes: {
+        blink: {
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' },
+        },
+      },
+      animation: {
+        blink: 'blink 1s linear infinite',
+      },
     },
     fontSize: {
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
@@ -39,6 +40,7 @@ function MailIcon(props) {
         d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
         className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
       />
+
       <path
         d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
         className="stroke-zinc-400 dark:stroke-zinc-500"
@@ -199,7 +201,12 @@ function Likes() {
   ]
 
   return (
-    <div className="-my-4 mx-4 flex flex-wrap items-center justify-center gap-5 overflow-hidden py-4 md:flex-row md:flex-nowrap ">
+    <motion.div
+      className="-my-4 mx-4 flex flex-wrap items-center justify-center gap-5 py-4 md:flex-row md:flex-nowrap "
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+    >
       {likes.map((like, idx) => (
         <Link
           href={like.link}
@@ -209,13 +216,13 @@ function Likes() {
           <h1
             className={`${
               idx % 2 ? '-' : ''
-            }rotate-2 wiggle select-none rounded-xl bg-slate-50 p-4 text-center text-4xl font-bold tracking-tight text-zinc-800 shadow-lg transition-transform duration-300 ease-in-out  dark:bg-zinc-800 dark:text-zinc-100`}
+            }rotate-2 wiggle select-none rounded-xl bg-transparent p-4 text-center text-4xl font-bold tracking-tight text-zinc-800 shadow-lg transition-transform duration-300 ease-in-out  dark:bg-zinc-800 dark:text-zinc-100`}
           >
             {like.title}
           </h1>
         </Link>
       ))}
-    </div>
+    </motion.div>
   )
 }
 
@@ -224,7 +231,12 @@ function Photos() {
 
   return (
     <div className="mt-16 sm:mt-20">
-      <div className="hide-scrollbar -my-4 flex flex-wrap justify-center gap-5 overflow-scroll py-4 sm:gap-8 md:flex-nowrap md:px-60">
+      <motion.div
+        className="hide-scrollbar -my-4 flex flex-wrap justify-center gap-5 overflow-scroll py-4 sm:gap-8 md:flex-nowrap md:px-60"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+      >
         {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
           <div
             key={image.src}
@@ -241,7 +253,7 @@ function Photos() {
             />
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

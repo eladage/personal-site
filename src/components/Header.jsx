@@ -1,12 +1,16 @@
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Popover, Transition } from '@headlessui/react'
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
+
+import NAVIGATION_ITEMS from '../constants/NAVIGATION_ITEMS'
+import AnimatedTabs from './AnimatedTabs'
 
 function CloseIcon(props) {
   return (
@@ -121,11 +125,11 @@ function MobileNavigation(props) {
             </div>
             <nav className="mt-6">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <MobileNavItem href="/">Home</MobileNavItem>
-                <MobileNavItem href="/about">About</MobileNavItem>
-                <MobileNavItem href="/articles">Blog</MobileNavItem>
-                <MobileNavItem href="/photos">Photos</MobileNavItem>
-                <MobileNavItem href="/desk">Desk</MobileNavItem>
+                {NAVIGATION_ITEMS.map((item) => (
+                  <MobileNavItem href={item.href} key={item.href}>
+                    {item.label}
+                  </MobileNavItem>
+                ))}
               </ul>
             </nav>
           </Popover.Panel>
@@ -159,14 +163,33 @@ function NavItem({ href, children }) {
 }
 
 function DesktopNavigation(props) {
+  let mouseX = useMotionValue(0)
+  let mouseY = useMotionValue(0)
+
+  function handleMouseMove({ currentTarget, clientX, clientY }) {
+    let { left, top } = currentTarget.getBoundingClientRect()
+
+    mouseX.set(clientX - left)
+    mouseY.set(clientY - top)
+  }
   return (
-    <nav {...props}>
-      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/">Home</NavItem>
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/articles">Blog</NavItem>
-        <NavItem href="/photos">Photos</NavItem>
-        <NavItem href="/desk">Desk</NavItem>
+    <nav
+      className="group pointer-events-auto relative hidden md:block"
+      onMouseMove={handleMouseMove}
+      {...props}
+    >
+      <motion.div
+        className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`radial-gradient(150px circle at ${mouseX}px ${mouseY}px, rgba(14, 165, 233, 0.9), transparent 80%)`,
+        }}
+      />
+      <ul className="flex select-none rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+        {NAVIGATION_ITEMS.map((item) => (
+          <NavItem href={item.href} key={item.href}>
+            {item.label}
+          </NavItem>
+        ))}
       </ul>
     </nav>
   )
@@ -225,6 +248,70 @@ function AvatarContainer({ className, ...props }) {
   )
 }
 
+const Title = ({ title }) => {
+  const [displayTitle, setDisplayTitle] = useState(
+    title.split('').map(() => '')
+  )
+  const [completed, setCompleted] = useState(false)
+  const timeoutRef = useRef()
+  const [isBlinking, setIsBlinking] = useState(true)
+
+  const randomCharacter = () => {
+    const characters = 'abcdefghijklmnopqrstuvwxyz.'
+    return characters.charAt(Math.floor(Math.random() * characters.length))
+  }
+
+  useEffect(() => {
+    if (!completed) {
+      const newTitle = [...displayTitle]
+      let allCharactersSet = true
+
+      newTitle.forEach((char, index) => {
+        if (char !== title[index]) {
+          allCharactersSet = false
+          newTitle[index] = randomCharacter()
+        }
+      })
+
+      if (allCharactersSet) {
+        setCompleted(true)
+      } else {
+        timeoutRef.current = setTimeout(() => setDisplayTitle(newTitle), 8)
+      }
+    }
+    const timer = setTimeout(() => {
+      setIsBlinking(false)
+    }, 10000)
+
+    return () => {
+      clearTimeout(timeoutRef.current)
+      clearTimeout(timer)
+    }
+  }, [displayTitle, title, completed, isBlinking])
+
+  const handleMouseOver = () => {
+    if (completed) {
+      setIsBlinking(true)
+      setCompleted(false)
+      setDisplayTitle(title.split('').map(() => ''))
+    }
+  }
+
+  return (
+    <h1
+      className="font-mono text-2xl text-zinc-600 dark:text-zinc-400"
+      onMouseOver={handleMouseOver}
+    >
+      <span>{displayTitle.join('')}</span>
+      <span
+        className={`${isBlinking ? 'animate-blink' : 'invisible'} text-3xl`}
+      >
+        |
+      </span>
+    </h1>
+  )
+}
+
 function Avatar({ large = false, className, ...props }) {
   return (
     <Link
@@ -244,9 +331,7 @@ function Avatar({ large = false, className, ...props }) {
           )}
           priority
         />
-        <h1 className="font-mono text-2xl text-zinc-600 dark:text-zinc-400">
-          eriic.dev
-        </h1>
+        <Title title="eriic.dev" />
       </div>
     </Link>
   )
@@ -358,7 +443,7 @@ export function Header() {
   return (
     <>
       <header
-        className="pointer-events-none relative z-50 flex flex-col"
+        className="relative z-50 flex flex-col"
         style={{
           height: 'var(--header-height)',
           marginBottom: 'var(--header-mb)',
@@ -413,15 +498,16 @@ export function Header() {
                   </AvatarContainer>
                 )}
               </div>
-              <div className="flex flex-1 justify-end md:justify-center">
+              <div className="flex flex-1 items-center justify-end gap-4 md:justify-center md:gap-8">
                 <MobileNavigation className="pointer-events-auto md:hidden" />
-                <DesktopNavigation className="pointer-events-auto hidden md:block" />
-              </div>
-              <div className="flex justify-end md:flex-1">
+                {/* <DesktopNavigation /> */}
+                <AnimatedTabs />
                 <div className="pointer-events-auto">
                   <ModeToggle />
                 </div>
               </div>
+              {/* <div className="flex justify-end md:flex-1">
+              </div> */}
             </div>
           </Container>
         </div>
