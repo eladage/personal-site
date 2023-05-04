@@ -11,6 +11,7 @@ import {
   LinkedInIcon,
 } from '@/components/SocialIcons'
 import friendsImage from '@/images/friends.jpg'
+import { AnimatedTitle } from '../components/AnimatedTitle'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -58,12 +59,16 @@ export default function About() {
           </div>
           <div className="order-first h-full lg:order-first lg:row-span-2">
             <SpotlightCard>
-              <div className="h-full text-zinc-800 dark:text-zinc-100">
-                <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-                  Eric Ladage
-                </h1>
-                <p>{`Been professionally writing code since around 2015.`}</p>
-                <p>{`Slowly becoming not terrible at it. 🤙`}</p>
+              <div className="flex h-full flex-col gap-8 text-zinc-800 dark:text-zinc-100">
+                <AnimatedTitle
+                  title={'Eric Ladage'}
+                  allowUppercase
+                  textSize="4xl"
+                />
+                <div>
+                  <p>{`Been professionally writing code since around 2015.`}</p>
+                  <p>{`Slowly becoming not terrible at it. 🤙`}</p>
+                </div>
               </div>
             </SpotlightCard>
           </div>
