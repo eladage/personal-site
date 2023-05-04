@@ -9,13 +9,13 @@ const textSizeMapping = {
   '2xl': 'text-2xl',
   '3xl': 'text-3xl',
   '4xl': 'text-4xl',
-  '5xl': 'text-5xl',
-  '6xl': 'text-6xl',
 }
 
 interface AnimatedTitleProps {
   title: string
   allowUppercase?: boolean
+  allowNumbers?: boolean
+  allowRerender?: boolean
   showCursor?: boolean
   textSize?: keyof typeof textSizeMapping
 }
@@ -23,6 +23,8 @@ interface AnimatedTitleProps {
 export function AnimatedTitle({
   title,
   allowUppercase = false,
+  allowNumbers = false,
+  allowRerender = true,
   showCursor = false,
   textSize = '2xl',
 }: AnimatedTitleProps) {
@@ -39,6 +41,9 @@ export function AnimatedTitle({
     let characters = 'abcdefghijklmnopqrstuvwxyz.'
     if (allowUppercase) {
       characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ '
+    }
+    if (allowNumbers) {
+      characters += '0123456789'
     }
     return characters.charAt(Math.floor(Math.random() * characters.length))
   }
@@ -75,7 +80,7 @@ export function AnimatedTitle({
   }, [displayTitle, title, completed, isBlinking])
 
   const handleMouseOver = () => {
-    if (completed) {
+    if (completed && allowRerender) {
       setIsBlinking(true)
       setCompleted(false)
       setDisplayTitle(title.split('').map(() => ''))
