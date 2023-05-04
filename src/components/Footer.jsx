@@ -32,15 +32,15 @@ export function Footer() {
                 ))}
               </div>
               <div>
-                <p className="text-sm text-zinc-400 dark:text-zinc-500">
-                  &copy; {new Date().getFullYear()} Eric Ladage. All rights
-                  reserved.
-                </p>
                 <div className="mt-1">
                   <ConfettiWrapper>
                     <ClippyButton title="Need Help?" />
                   </ConfettiWrapper>
                 </div>
+                <p className="text-sm text-zinc-400 dark:text-zinc-500">
+                  &copy; {new Date().getFullYear()} Eric Ladage. All rights
+                  reserved.
+                </p>
               </div>
             </div>
           </Container.Inner>

@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { motion } from 'framer-motion'
+
 import blueberry_outline from '@/images/photos/blueberry-outline.png'
 import { Container } from '@/components/Container'
 import { AnimatedTitle } from '../components/AnimatedTitle'
@@ -9,13 +11,19 @@ export default function PageNotFound() {
   return (
     <Container className="mt-16 sm:mt-32">
       <main className="relative isolate -mb-32 flex min-h-full flex-col-reverse md:flex-row">
-        <Image
-          src={blueberry_outline}
-          alt=""
-          width={500}
-          height={100}
-          className=""
-        />
+        <motion.div
+          initial={{ opacity: 0, x: -500 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <Image
+            src={blueberry_outline}
+            alt=""
+            width={500}
+            height={100}
+            className=""
+          />
+        </motion.div>
         <div className="mx-auto  max-w-7xl px-6 py-32 text-center text-zinc-800  dark:text-zinc-200 sm:py-40 lg:px-8">
           <AnimatedTitle
             title="404"
