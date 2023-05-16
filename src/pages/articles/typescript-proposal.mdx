@@ -1,0 +1,132 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Eric Ladage',
+  date: '2023-05-16',
+  title: 'Proposal For Typescript',
+  description:
+    'Simple proposal I wrote to convince my team to make the switch to typescript in our codebase.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+## What is typescript?
+
+Typescript is essentially an added typing layer to vanilla Javascript. As we know, JavaScript is a popular programming language that is widely used for web development. However, as applications grow in complexity and size, the limitations of JavaScript become more apparent. TypeScript adds optional type annotations and other features that make it easier to write and maintain large-scale applications.
+
+## Benefits of TypeScript
+
+Type annotations and type checking: One of the main benefits of TypeScript is its support for optional type annotations. This allows developers to specify the expected data types of variables, function parameters, and return values. TypeScript's type checker then uses this information to catch type-related errors at compile time, rather than at runtime. This can help prevent a class of bugs and make the development process more efficient.
+
+Improved code maintainability and readability: With TypeScript's optional type annotations, it's much easier to understand what a function or variable is supposed to do, which can greatly improve code maintainability and readability. Additionally, TypeScript provides better IntelliSense and auto-completion support, which makes it easier to navigate large codebases.
+
+Better tooling support: TypeScript has better tooling support than JavaScript. Many popular IDEs and text editors have built-in support for TypeScript, which can make the development experience more seamless. Additionally, TypeScript is compatible with many popular libraries and frameworks, such as React and Angular, which means developers can use TypeScript with their existing toolset.
+
+Improved scalability: TypeScript's type annotations and improved tooling support make it a better choice for building large-scale applications. The type annotations provide a way to catch errors early in the development process, while the improved tooling support makes it easier to navigate and maintain large codebases.
+
+Strong OOP Support: TypeScript offers features like class, interfaces, and private members, which makes it more suitable for Object-oriented development (This point is more focused on backend code, where ts would also be beneficial).
+
+## Code Examples
+
+I'll just take a small component in the existing navigator code base and rewrite it using typescript:
+
+```jsx
+// original file in javascript
+import React from 'react'
+import { Error } from '@progress/kendo-react-labels'
+
+const FilterMessages = (props) => {
+  const { messages, fieldkey, innerId } = props
+
+  const filteredMessages = messages.filter(
+    (message) => message.field === fieldkey
+  )
+
+  let content = null
+  if (filteredMessages.length) {
+    if (innerId) {
+      content = <Error id={innerId}>{filteredMessages[0].message}</Error>
+    } else {
+      content = (
+        <ul>
+          {filteredMessages.map((message) => (
+            <li key={message}>{message.message}</li>
+          ))}
+        </ul>
+      )
+    }
+  }
+  return content
+}
+```
+
+```tsx
+// same file rewritten with types
+import React from 'react'
+import { Error } from '@progress/kendo-react-labels'
+
+type Message = {
+  id: number
+  field: string
+  message: string
+}
+
+interface FilterMessagesProps {
+  messages: Message[]
+  fieldKey: string
+  innerId: string
+}
+
+export default function FilterMessages({
+  messages,
+  fieldKey,
+  innerId,
+}: FilterMessagesProps): JSX.Element {
+  const filteredMessages: Message[] = messages.filter(
+    (message: Message) => message.field === fieldKey
+  )
+
+  if (!filteredMessages.length) {
+    return
+  }
+  if (innerId) {
+    return <Error id={innerId}>{filteredMessages[0].message}</Error>
+  }
+
+  return (
+    <ul>
+      {filteredMessages.map((message: Message) => (
+        <li key={message.id}>{message.message}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+You can see in the rewrite that I have created an interface for the React component which will self-document what we expect to receive as props and above that I have created a `Message` type which tells us what we expect every element of the `messages` array to contain.
+
+This is useful because it immediately will show you what a `message` contains. Take this image from my IDE as an example:
+
+![Image](https://user-images.githubusercontent.com/121046841/211629330-9df986fc-f230-4c6b-93ff-9eb8bc685e55.png)
+
+Once you start to write the code, vscode will pop up with what it already knows `message` can contain. This eliminates typos which in turn removes a high percentage of bugs that make it to shipped code.
+
+Rewriting this in typescript also immediately found an error in the code. The original code has the following HTML element:
+
+```jsx
+<li key={message}>message.message}</li>
+```
+
+We can see that `message` is trying to be used as a key for the `<li />` element which is invalid as `message` is an `object` not a `string` or `number`.
+
+With typescript the IDE flags this as an error and gives a helpful message:
+
+![Image](https://user-images.githubusercontent.com/121046841/211632184-26080765-bf34-4fab-b116-172fccdab120.png)
+
+Now if you go to consume this component you will get useful autocomplete and errors if the props do not match the typing that we've set up.
+
+https://user-images.githubusercontent.com/121046841/211636315-0510ad29-96ea-4364-b396-797ffa09ab47.mp4
+
+## Conclusion
+
+For any frontend web projects being started fresh I don't think there are any drawbacks to leveraging typescript and there are a ton of benefits with little to no learning curve for new devs as they can take or leave the typing syntax as they begin to learn it. It will eliminate bugs in production and make code much cleaner while giving devs useful quality of life improvements.

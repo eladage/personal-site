@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
 import { motion } from 'framer-motion'
 
 import blueberry_outline from '@/images/photos/blueberry-outline.png'
 import { Container } from '@/components/Container'
-import { AnimatedTitle } from '../components/AnimatedTitle'
+import { AnimatedTitle } from '@/components/AnimatedTitle'
 
 export default function PageNotFound() {
   return (

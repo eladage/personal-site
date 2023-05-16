@@ -45,7 +45,7 @@ export default function Uses() {
               Probably giving me carpal tunnel but hey I can never go back.
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Languages*">
+          <ToolsSection title="Languages*" subtitle="what I'm currently using">
             <Tool title="Typescript">
               Some people hate it but I love it. I am one of the few people that
               think that javascript when written well is a pretty language and

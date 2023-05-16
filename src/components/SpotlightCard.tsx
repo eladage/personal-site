@@ -20,7 +20,7 @@ export function SpotlightCard({ children, spotlightSize = 500 }) {
       <motion.div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
-          background: useMotionTemplate`radial-gradient(${spotlightSize}px circle at ${mouseX}px ${mouseY}px, rgba(14, 165, 233, 0.15), transparent 80%)`,
+          background: useMotionTemplate`radial-gradient(${spotlightSize}px circle at ${mouseX}px ${mouseY}px, rgba(254, 247, 238,  0.15), transparent 80%)`,
         }}
       />
       {children}

@@ -53,7 +53,7 @@ export default function About() {
                 src={friendsImage}
                 alt=""
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                className="rotate-3 rounded-2xl bg-zinc-100 object-cover shadow-lg dark:bg-zinc-800 lg:rotate-0"
+                className="rotate-0 rounded-2xl bg-zinc-100 object-cover shadow-lg dark:bg-zinc-800 lg:rotate-3"
               />
             </div>
           </div>
