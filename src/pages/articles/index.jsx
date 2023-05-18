@@ -39,14 +39,11 @@ export default function ArticlesIndex({ articles }) {
     <>
       <Head>
         <title>Blog - Eric Ladage</title>
-        <meta
-          name="description"
-          content="Collection of writings (if I ever get around to writing anything...)"
-        />
+        <meta name="description" content="Collection of writings " />
       </Head>
       <SimpleLayout
         title="Collection of writings"
-        intro="(if I ever get around to writing anything...)"
+        intro="Probably code focused but maybe not"
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">

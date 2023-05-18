@@ -1,7 +1,15 @@
 import { MouseEvent } from 'react'
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
 
-export function SpotlightCard({ children, spotlightSize = 500 }) {
+interface SpotlightCardProps {
+  spotlightSize?: number
+  children: React.ReactNode
+}
+
+export function SpotlightCard({
+  children,
+  spotlightSize = 500,
+}: SpotlightCardProps): JSX.Element {
   let mouseX = useMotionValue(0)
   let mouseY = useMotionValue(0)
 

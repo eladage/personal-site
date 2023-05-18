@@ -1,0 +1,89 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Eric Ladage',
+  date: '2023-05-17',
+  title: 'Typescript Generics',
+  description:
+    'What are generics in typescript and how can they be used to make your code more flexible and reusable?',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+```ts
+function explain<WhatTheFuckIsThis>(arg: WhatTheFuckIsThis): WhatTheFuckIsThis {
+  console.log(`This is a ${arg.constructor.name}`)
+
+  return arg
+}
+
+// ✅
+let num = explain<number>(123) // Logs: Number
+let str = explain<string>('123') // Logs: String
+
+// ❌
+let badNum = explain<number>('123') // Argument of type 'string' is not assignable to parameter of type 'number'.
+let badStr = explain<str>(123) // Argument of type 'number' is not assignable to parameter of type 'string'.
+```
+
+So what exactly does the parameter in brackets after the function name mean? It's called a generic type parameter, and it allows us to write functions that can work with different types of data while still maintaining type safety.
+
+## What Are TypeScript Generics?
+
+In TypeScript, generics are a way to create reusable components that can work with a variety of data types while still maintaining type safety. Imagine them as placeholders for any type. They allow developers to write flexible functions, classes, or interfaces that can handle different types of arguments while preserving the benefits of type checking.
+
+A generic function might look something like this:
+
+```ts
+function identity<T>(arg: T): T {
+  return arg
+}
+```
+
+In this example, `T` is a type variable — a stand-in for any type. The `<T>` right after the function name declares a generic function. This function can work with any type `T`. The `(arg: T): T` means that this function takes one argument, arg, of type `T` and returns a value of the same type `T`.
+
+## Why Are Generics Useful?
+
+TypeScript is a statically typed superset of JavaScript, meaning it adds static types to the JavaScript language. This feature allows the compiler to check types before the code runs, which can help catch errors early.
+
+However, JavaScript is inherently a dynamically typed language, and sometimes, we need our TypeScript code to maintain some of that flexibility. This is where generics shine.
+
+Generics allow developers to write flexible and reusable code while preserving the benefits of type safety. You can use generics to create functions, classes, and interfaces that can work with different data types without losing the benefits of the compiler's type checks.
+
+## When Are Generics Useful?
+
+Generics are particularly useful when you need a function, class, or interface to work with different data types while still maintaining type safety.
+
+For example, consider an array in JavaScript, which can contain elements of any type. If you're writing a TypeScript function that operates on an array, you could use generics to ensure that the function works with arrays of any type while still benefiting from TypeScript's type checks.
+
+Here's some maybe more practical examples:
+
+```ts
+function getLastItem<T>(arr: T[]): T {
+  return arr[arr.length - 1]
+}
+
+let numArr = [1, 2, 3, 4, 5]
+let strArr = ['Apple', 'Banana', 'Cherry']
+
+console.log(getLastItem(numArr)) // Outputs: 5
+console.log(getLastItem(strArr)) // Outputs: 'Cherry'
+```
+
+```ts
+function getLastItem<T>(arr: T[]): T {
+  return arr[arr.length - 1]
+}
+
+let numArr = [1, 2, 3, 4, 5]
+let strArr = ['Apple', 'Banana', 'Cherry']
+
+console.log(getLastItem<string>(numArr)) // Outputs: 5
+console.log(getLastItem<string>(strArr)) // Outputs: 'Cherry'
+```
+
+In this example, getLastItem is a generic function that can work with arrays of any type. The type T is replaced with the actual type of the array when the function is called, and TypeScript enforces that the return type matches the type of the array's elements.
+
+## Conclusion
+
+Generics are a powerful feature in TypeScript that allow you to write reusable, flexible, and type-safe code. They are an essential tool in any TypeScript developer's toolkit. By understanding and utilizing generics, you can greatly improve the robustness and maintainability of your TypeScript code.

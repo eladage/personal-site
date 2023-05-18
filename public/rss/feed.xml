@@ -4,7 +4,7 @@
         <title>Eric Ladage</title>
         <link>undefined</link>
         <description>Your blog description</description>
-        <lastBuildDate>Tue, 16 May 2023 15:59:42 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 17 May 2023 21:57:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,46 @@
             <link>undefined</link>
         </image>
         <copyright>All rights reserved 2023</copyright>
+        <item>
+            <title><![CDATA[Typescript Generics]]></title>
+            <link>undefined/articles/typescript-generics</link>
+            <guid>undefined/articles/typescript-generics</guid>
+            <pubDate>Wed, 17 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[What are generics in typescript and how can they be used to make your code more flexible and reusable?]]></description>
+            <content:encoded><![CDATA[<h1>Understanding TypeScript Generics: A Comprehensive Guide</h1>
+<p>Generics, a robust feature in TypeScript, is an essential tool for any TypeScript developer aiming to write dynamic yet type-safe code. In this post, we&#x27;ll delve into what generics are, why they are useful, when to use them, and provide some concrete examples.</p>
+<h2>What Are TypeScript Generics?</h2>
+<p>In TypeScript, generics are a way to create reusable components that can work with a variety of data types while still maintaining type safety. Imagine them as placeholders for any type. They allow developers to write flexible functions, classes, or interfaces that can handle different types of arguments while preserving the benefits of type checking.</p>
+<p>A generic function might look something like this:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token generic-function"><span class="token function">identity</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> arg
+<span class="token punctuation">}</span>
+</code></pre>
+<p>In this example, <code>T</code> is a type variable — a stand-in for any type. The <code>&lt;T&gt;</code> right after the function name declares a generic function. This function can work with any type <code>T</code>. The <code>(arg: T): T</code> means that this function takes one argument, arg, of type <code>T</code> and returns a value of the same type <code>T</code>.</p>
+<h2>Why Are Generics Useful?</h2>
+<p>TypeScript is a statically typed superset of JavaScript, meaning it adds static types to the JavaScript language. This feature allows the compiler to check types before the code runs, which can help catch errors early.</p>
+<p>However, JavaScript is inherently a dynamically typed language, and sometimes, we need our TypeScript code to maintain some of that flexibility. This is where generics shine.</p>
+<p>Generics allow developers to write flexible and reusable code while preserving the benefits of type safety. You can use generics to create functions, classes, and interfaces that can work with different data types without losing the benefits of the compiler&#x27;s type checks.</p>
+<h2>When Are Generics Useful?</h2>
+<p>Generics are particularly useful when you need a function, class, or interface to work with different data types while still maintaining type safety.</p>
+<p>For example, consider an array in JavaScript, which can contain elements of any type. If you&#x27;re writing a TypeScript function that operates on an array, you could use generics to ensure that the function works with arrays of any type while still benefiting from TypeScript&#x27;s type checks.</p>
+<p>Here&#x27;s an example:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token generic-function"><span class="token function">getLastItem</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>arr<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> arr<span class="token punctuation">[</span>arr<span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> numArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> strArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">&#x27;Apple&#x27;</span><span class="token punctuation">,</span> <span class="token string">&#x27;Banana&#x27;</span><span class="token punctuation">,</span> <span class="token string">&#x27;Cherry&#x27;</span><span class="token punctuation">]</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">getLastItem</span><span class="token punctuation">(</span>numArr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// Outputs: 5</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">getLastItem</span><span class="token punctuation">(</span>strArr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// Outputs: &#x27;Cherry&#x27;</span>
+</code></pre>
+<p>In this example, getLastItem is a generic function that can work with arrays of any type. The type T is replaced with the actual type of the array when the function is called, and TypeScript enforces that the return type matches the type of the array&#x27;s elements.</p>
+<p>Conclusion</p>
+<p>Generics are a powerful feature in TypeScript that allow you to write reusable, flexible, and type-safe code. They are an essential tool in any TypeScript developer&#x27;s toolkit. By understanding and utilizing generics, you can greatly improve the robustness and maintainability of your TypeScript code.</p>
+<p>Happy TypeScripting!</p>]]></content:encoded>
+            <author>eladage@gmail.com (Eric Ladage)</author>
+        </item>
         <item>
             <title><![CDATA[Proposal For Typescript]]></title>
             <link>undefined/articles/typescript-proposal</link>
@@ -77,7 +117,7 @@
   messages<span class="token punctuation">,</span>
   fieldKey<span class="token punctuation">,</span>
   innerId<span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token operator">:</span> <span class="token maybe-class-name">FilterMessagesProps</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token maybe-class-name">React</span><span class="token punctuation">.</span><span class="token constant">FC</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token operator">:</span> <span class="token maybe-class-name">FilterMessagesProps</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">JSX</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Element</span></span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> filteredMessages<span class="token operator">:</span> <span class="token maybe-class-name">Message</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> messages<span class="token punctuation">.</span><span class="token method function property-access">filter</span><span class="token punctuation">(</span>
     <span class="token punctuation">(</span>message<span class="token operator">:</span> <span class="token maybe-class-name">Message</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> message<span class="token punctuation">.</span><span class="token property-access">field</span> <span class="token operator">===</span> fieldKey
   <span class="token punctuation">)</span>
@@ -109,49 +149,9 @@
 <p>With typescript the IDE flags this as an error and gives a helpful message:</p>
 <p><img src="https://user-images.githubusercontent.com/121046841/211632184-26080765-bf34-4fab-b116-172fccdab120.png" alt="Image"/></p>
 <p>Now if you go to consume this component you will get useful autocomplete and errors if the props do not match the typing that we&#x27;ve set up.</p>
-<p><a href="https://user-images.githubusercontent.com/121046841/211636315-0510ad29-96ea-4364-b396-797ffa09ab47.mp4">https://user-images.githubusercontent.com/121046841/211636315-0510ad29-96ea-4364-b396-797ffa09ab47.mp4</a></p>
+<p><a href="https://user-images.githubusercontent.com/121046841/211636315-0510ad29-96ea-4364-b396-797ffa09ab47.mp4">Demo</a></p>
 <h2>Conclusion</h2>
 <p>For any frontend web projects being started fresh I don&#x27;t think there are any drawbacks to leveraging typescript and there are a ton of benefits with little to no learning curve for new devs as they can take or leave the typing syntax as they begin to learn it. It will eliminate bugs in production and make code much cleaner while giving devs useful quality of life improvements.</p>]]></content:encoded>
-            <author>eladage@gmail.com (Eric Ladage)</author>
-        </item>
-        <item>
-            <title><![CDATA[Placeholder Article]]></title>
-            <link>undefined/articles/placeholder</link>
-            <guid>undefined/articles/placeholder</guid>
-            <pubDate>Thu, 20 Apr 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, nisl a ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nisl nisl sit amet ante. Sed auctor, nisl a ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nisl nisl sit amet ante.]]></description>
-            <content:encoded><![CDATA[<h2>Typescript</h2>
-<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">interface</span> <span class="token class-name"><span class="token maybe-class-name">TestProps</span></span> <span class="token punctuation">{</span>
-  test<span class="token operator">:</span> <span class="token builtin">string</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Test</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> test <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token maybe-class-name">TestProps</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword control-flow">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>test<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h2>Lorem Ipsum</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, nisl a
-ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nisl nisl sit amet ante.</p>
-<h2>Lethaei Pindumve me quae dinumerat Pavor</h2>
-<p>Idem se saxa fata pollentibus geminos; quos pedibus. Est urnis Herses omnes nec
-divite: et ille illa furit sim verbis Cyllenius.</p>
-<ol>
-<li>Captus inpleverunt collo</li>
-<li>Nec nam placebant</li>
-<li>Siquos vulgus</li>
-<li>Dictis carissime fugae</li>
-<li>A tacitos nulla viginti</li>
-</ol>
-<p>Ungues fistula annoso, ille addit linoque motatque uberior verso
-<a href="#">rubuerunt</a> confine desuetaque. <em>Sanguine</em> anteit
-emerguntque expugnacior est pennas iniqui ecce <strong>haeret</strong> genus: peiora imagine
-fossas Cephisos formosa! Refugitque amata <a href="#">refelli</a>
-supplex. Summa brevis vetuere tenebas, hostes vetantis, suppressit, arreptum
-regna. Postquam conpescit iuvenis habet corpus, et erratica, perdere, tot mota
-ars talis.</p>
-<p>Sit volat naturam; motu Cancri. Erat pro simul quae valuit quoque timorem quam
-proelia: illo patrio <em>esse summus</em>, enim sua serpentibus, Hyleusque. Est coniuge
-recuso; refert Coroniden ignotos manat, adfectu.</p>]]></content:encoded>
             <author>eladage@gmail.com (Eric Ladage)</author>
         </item>
         <item>
