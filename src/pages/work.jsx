@@ -81,7 +81,7 @@ export default function Uses() {
                 }
                 image={job.logo}
                 subtitle={job.title}
-                descriptionElement="ol"
+                descriptionElement="ul"
               >
                 {job.description}
               </Tool>
