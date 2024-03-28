@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import clsx from 'clsx'
 
 function ChevronRightIcon(props) {
@@ -36,19 +37,41 @@ Card.Link = function CardLink({ children, ...props }) {
   )
 }
 
-Card.Title = function CardTitle({ as: Component = 'h2', href, children }) {
+Card.Title = function CardTitle({
+  as: Component = 'h2',
+  secondary,
+  image,
+  href,
+  children,
+}) {
   return (
-    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-      {href ? <Card.Link href={href}>{children}</Card.Link> : children}
+    <Component className="flex w-full justify-between text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+      {href ? (
+        <Card.Link href={href}>{children}</Card.Link>
+      ) : (
+        <>
+          <div className="flex items-center gap-2">
+            {children}
+            {image && (
+              <Image src={image} alt="" className="h-7 w-7" unoptimized />
+            )}
+          </div>
+          {secondary && (
+            <span className="text-sm italic text-zinc-500 dark:text-zinc-400">
+              {secondary}
+            </span>
+          )}
+        </>
+      )}
     </Component>
   )
 }
 
-Card.Description = function CardDescription({ children }) {
+Card.Description = function CardDescription({ as: Component = 'p', children }) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <Component className="relative z-10 mt-2 list-disc text-sm text-zinc-600 dark:text-zinc-400">
       {children}
-    </p>
+    </Component>
   )
 }
 
@@ -61,6 +84,22 @@ Card.Cta = function CardCta({ children }) {
       {children}
       <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
     </div>
+  )
+}
+
+Card.Subtitle = function CardSubtitle({ children }) {
+  return (
+    <p className="relative z-10 mt-1 text-sm text-zinc-500 dark:text-pink-500">
+      {children}
+    </p>
+  )
+}
+
+Card.Info = function CardInfo({ children }) {
+  return (
+    <p className="relative z-10 mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+      {children}
+    </p>
   )
 }
 

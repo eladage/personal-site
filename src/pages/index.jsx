@@ -24,6 +24,7 @@ import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import RESUME from '@/constants/RESUME'
+import ArrowDownIcon from '@/icons/ArrowDown'
 
 function MailIcon(props) {
   return (
@@ -67,19 +68,6 @@ function BriefcaseIcon(props) {
       <path
         d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
         className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
-
-function ArrowDownIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   )
@@ -143,6 +131,12 @@ function Resume() {
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Work</span>
+        <Link
+          href="/work"
+          className="ml-auto text-xs text-zinc-400 underline dark:text-zinc-500"
+        >
+          View More
+        </Link>
       </h2>
       <ol className="mt-6 space-y-4">
         {RESUME.map((role, roleIndex) => (
@@ -162,24 +156,18 @@ function Resume() {
               <dt className="sr-only">Date</dt>
               <dd
                 className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${
-                  role.end.label ?? role.end
-                }`}
+                aria-label={`${role.start.getFullYear()} until ${role.end.getFullYear()}`}
               >
-                <time dateTime={role.start.dateTime ?? role.start}>
-                  {role.start.label ?? role.start}
-                </time>{' '}
+                <time dateTime={role.start}>{role.start.getFullYear()}</time>{' '}
                 <span aria-hidden="true">—</span>{' '}
-                <time dateTime={role.end.dateTime ?? role.end}>
-                  {role.end.label ?? role.end}
-                </time>
+                <time dateTime={role.end}>{role.end.getFullYear()}</time>
               </dd>
             </dl>
           </li>
         ))}
       </ol>
       <Button
-        href={'/LadageResume2023.pages'}
+        href={'/Resume.pdf'}
         variant="secondary"
         className="group mt-6 w-full"
       >
@@ -192,9 +180,9 @@ function Resume() {
 
 function Likes() {
   let likes = [
-    { title: '👨‍💻 dev', link: '/desk' },
+    { title: '👨‍💻 dev', link: '/work' },
     { title: '🎸 music', link: '' },
-    { title: '📸 photos', link: '/photos' },
+    { title: '📸 photos', link: '' },
     { title: '🚲 bikes', link: '' },
     { title: '🎨 art', link: '' },
     { title: '🧗‍♂️ climbing', link: '' },

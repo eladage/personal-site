@@ -66,12 +66,9 @@ export default function About() {
                   textSize="4xl"
                 />
                 <div className="flex flex-col gap-4">
-                  <p>{`Been professionally writing code since around 2015. Slowly becoming not terrible at it. 🤙`}</p>
-                  <p>{`My code is being ran in hospitals all around the world. I've helped build ecommerce platforms from scratch and have am currently working to build tools for my alma mater.`}</p>
-                  <p>{`Currently living in Salt Lake City, UT with my beautiful girlfriend and our dog, Blueberry.`}</p>
-                  <p>{`When I'm not working, you might find me biking up or climbing local mountains here in Utah.`}</p>
-                  <p>{`(Depending on my current fitness you might also find me struggling to cycle up a small hill too)`}</p>
-                  <p>{`And during football season you bet I'm watching my SUPER BOWL CHAMP Kansas City Chiefs! 🏈`}</p>
+                  <p>{`Been professionally writing code since around 2015. Slowly becoming not terrible at it...`}</p>
+                  <p>{`My code is being ran in hospitals all around the world. I've helped build ecommerce platforms from scratch and am currently working to build education tools for my alma mater.`}</p>
+                  <p>{`Currently living in San Clemente, CA with my girlfriend and our dog, Blueberry.`}</p>
                 </div>
               </div>
             </SpotlightCard>

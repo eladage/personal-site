@@ -39,12 +39,9 @@ export default function ArticlesIndex({ articles }) {
     <>
       <Head>
         <title>Blog - Eric Ladage</title>
-        <meta name="description" content="Collection of writings " />
+        <meta name="description" content="Blog " />
       </Head>
-      <SimpleLayout
-        title="Collection of writings"
-        intro="Probably code focused but maybe not"
-      >
+      <SimpleLayout>
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
             {articles.map((article) => (

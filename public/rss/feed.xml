@@ -2,25 +2,38 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Eric Ladage</title>
-        <link>undefined</link>
+        <link>https://www.eriic.dev</link>
         <description>Your blog description</description>
-        <lastBuildDate>Wed, 17 May 2023 21:57:09 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 28 Mar 2024 18:46:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
             <title>Eric Ladage</title>
-            <url>undefined/favicon.ico</url>
-            <link>undefined</link>
+            <url>https://www.eriic.dev/favicon.ico</url>
+            <link>https://www.eriic.dev</link>
         </image>
-        <copyright>All rights reserved 2023</copyright>
+        <copyright>All rights reserved 2024</copyright>
         <item>
             <title><![CDATA[Typescript Generics]]></title>
-            <link>undefined/articles/typescript-generics</link>
-            <guid>undefined/articles/typescript-generics</guid>
+            <link>https://www.eriic.dev/articles/typescript-generics</link>
+            <guid>https://www.eriic.dev/articles/typescript-generics</guid>
             <pubDate>Wed, 17 May 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[What are generics in typescript and how can they be used to make your code more flexible and reusable?]]></description>
-            <content:encoded><![CDATA[<h1>Understanding TypeScript Generics: A Comprehensive Guide</h1>
-<p>Generics, a robust feature in TypeScript, is an essential tool for any TypeScript developer aiming to write dynamic yet type-safe code. In this post, we&#x27;ll delve into what generics are, why they are useful, when to use them, and provide some concrete examples.</p>
+            <content:encoded><![CDATA[<pre class="language-ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token generic-function"><span class="token function">explain</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token maybe-class-name">WhatTheFuckIsThis</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token maybe-class-name">WhatTheFuckIsThis</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token maybe-class-name">WhatTheFuckIsThis</span> <span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">This is a </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>arg<span class="token punctuation">.</span><span class="token property-access">constructor</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+  <span class="token keyword control-flow">return</span> arg
+<span class="token punctuation">}</span>
+
+<span class="token comment">// ✅</span>
+<span class="token keyword">let</span> num <span class="token operator">=</span> <span class="token generic-function"><span class="token function">explain</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span> <span class="token comment">// Logs: Number</span>
+<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token generic-function"><span class="token function">explain</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token string">&#x27;123&#x27;</span><span class="token punctuation">)</span> <span class="token comment">// Logs: String</span>
+
+<span class="token comment">// ❌</span>
+<span class="token keyword">let</span> badNum <span class="token operator">=</span> <span class="token generic-function"><span class="token function">explain</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token string">&#x27;123&#x27;</span><span class="token punctuation">)</span> <span class="token comment">// Argument of type &#x27;string&#x27; is not assignable to parameter of type &#x27;number&#x27;.</span>
+<span class="token keyword">let</span> badStr <span class="token operator">=</span> <span class="token generic-function"><span class="token function">explain</span><span class="token generic class-name"><span class="token operator">&lt;</span>str<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span> <span class="token comment">// Argument of type &#x27;number&#x27; is not assignable to parameter of type &#x27;string&#x27;.</span>
+</code></pre>
+<p>So what exactly does the parameter in brackets after the function name mean? It&#x27;s called a generic type parameter, and it allows us to write functions that can work with different types of data while still maintaining type safety.</p>
 <h2>What Are TypeScript Generics?</h2>
 <p>In TypeScript, generics are a way to create reusable components that can work with a variety of data types while still maintaining type safety. Imagine them as placeholders for any type. They allow developers to write flexible functions, classes, or interfaces that can handle different types of arguments while preserving the benefits of type checking.</p>
 <p>A generic function might look something like this:</p>
@@ -36,7 +49,7 @@
 <h2>When Are Generics Useful?</h2>
 <p>Generics are particularly useful when you need a function, class, or interface to work with different data types while still maintaining type safety.</p>
 <p>For example, consider an array in JavaScript, which can contain elements of any type. If you&#x27;re writing a TypeScript function that operates on an array, you could use generics to ensure that the function works with arrays of any type while still benefiting from TypeScript&#x27;s type checks.</p>
-<p>Here&#x27;s an example:</p>
+<p>Here&#x27;s some maybe more practical examples:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token generic-function"><span class="token function">getLastItem</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>arr<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
   <span class="token keyword control-flow">return</span> arr<span class="token punctuation">[</span>arr<span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
@@ -47,16 +60,25 @@
 <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">getLastItem</span><span class="token punctuation">(</span>numArr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// Outputs: 5</span>
 <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">getLastItem</span><span class="token punctuation">(</span>strArr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// Outputs: &#x27;Cherry&#x27;</span>
 </code></pre>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token generic-function"><span class="token function">getLastItem</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>arr<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> arr<span class="token punctuation">[</span>arr<span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> numArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> strArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">&#x27;Apple&#x27;</span><span class="token punctuation">,</span> <span class="token string">&#x27;Banana&#x27;</span><span class="token punctuation">,</span> <span class="token string">&#x27;Cherry&#x27;</span><span class="token punctuation">]</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">getLastItem</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>numArr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// Outputs: 5</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">getLastItem</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>strArr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// Outputs: &#x27;Cherry&#x27;</span>
+</code></pre>
 <p>In this example, getLastItem is a generic function that can work with arrays of any type. The type T is replaced with the actual type of the array when the function is called, and TypeScript enforces that the return type matches the type of the array&#x27;s elements.</p>
-<p>Conclusion</p>
-<p>Generics are a powerful feature in TypeScript that allow you to write reusable, flexible, and type-safe code. They are an essential tool in any TypeScript developer&#x27;s toolkit. By understanding and utilizing generics, you can greatly improve the robustness and maintainability of your TypeScript code.</p>
-<p>Happy TypeScripting!</p>]]></content:encoded>
+<h2>Conclusion</h2>
+<p>Generics are a powerful feature in TypeScript that allow you to write reusable, flexible, and type-safe code. They are an essential tool in any TypeScript developer&#x27;s toolkit. By understanding and utilizing generics, you can greatly improve the robustness and maintainability of your TypeScript code.</p>]]></content:encoded>
             <author>eladage@gmail.com (Eric Ladage)</author>
         </item>
         <item>
             <title><![CDATA[Proposal For Typescript]]></title>
-            <link>undefined/articles/typescript-proposal</link>
-            <guid>undefined/articles/typescript-proposal</guid>
+            <link>https://www.eriic.dev/articles/typescript-proposal</link>
+            <guid>https://www.eriic.dev/articles/typescript-proposal</guid>
             <pubDate>Tue, 16 May 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Simple proposal I wrote to convince my team to make the switch to typescript in our codebase.]]></description>
             <content:encoded><![CDATA[<h2>What is typescript?</h2>
@@ -156,8 +178,8 @@
         </item>
         <item>
             <title><![CDATA[Placeholder Article with IMAGES]]></title>
-            <link>undefined/articles/placeholder-with-extras</link>
-            <guid>undefined/articles/placeholder-with-extras</guid>
+            <link>https://www.eriic.dev/articles/placeholder-with-extras</link>
+            <guid>https://www.eriic.dev/articles/placeholder-with-extras</guid>
             <pubDate>Sat, 31 Dec 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Lorem ipsum whatever man]]></description>
             <content:encoded><![CDATA[<p>This is where some cool article with like images and whatever would be...</p>
