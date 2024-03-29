@@ -18,7 +18,7 @@ export default function AnimatedTabs() {
               className={`h-full ${
                 pathname === navItem.href
                   ? ''
-                  : 'hover:text-pink-500 dark:hover:text-pink-400'
+                  : 'hover:text-sky-600 dark:hover:text-pink-400'
               } relative rounded-full px-3 py-2 text-sm font-medium text-zinc-800 transition focus-visible:outline-2 dark:text-zinc-200`}
               style={{
                 WebkitTapHighlightColor: 'transparent',

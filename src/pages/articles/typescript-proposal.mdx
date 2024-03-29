@@ -1,4 +1,4 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+import { ArticleLayout } from '@/components/ArticleLayout';
 
 export const meta = {
   author: 'Eric Ladage',
@@ -6,9 +6,9 @@ export const meta = {
   title: 'Proposal For Typescript',
   description:
     'Simple proposal I wrote to convince my team to make the switch to typescript in our codebase.',
-}
+};
 
-export default (props) => <ArticleLayout meta={meta} {...props} />
+export default (props) => <ArticleLayout meta={meta} {...props} />;
 
 ## What is typescript?
 
@@ -36,13 +36,13 @@ import React from 'react'
 import { Error } from '@progress/kendo-react-labels'
 
 const FilterMessages = (props) => {
-  const { messages, fieldkey, innerId } = props
+  const { messages, fieldkey, innerId } = props;
 
   const filteredMessages = messages.filter(
-    (message) => message.field === fieldkey
+    (message) => message.field === fieldkey;
   )
 
-  let content = null
+  let content = null;
   if (filteredMessages.length) {
     if (innerId) {
       content = <Error id={innerId}>{filteredMessages[0].message}</Error>
@@ -56,25 +56,25 @@ const FilterMessages = (props) => {
       )
     }
   }
-  return content
+  return content;
 }
 ```
 
 ```tsx
 // same file rewritten with types
-import React from 'react'
-import { Error } from '@progress/kendo-react-labels'
+import React from 'react';
+import { Error } from '@progress/kendo-react-labels';
 
 type Message = {
-  id: number
-  field: string
-  message: string
-}
+  id: number;
+  field: string;
+  message: string;
+};
 
 interface FilterMessagesProps {
-  messages: Message[]
-  fieldKey: string
-  innerId: string
+  messages: Message[];
+  fieldKey: string;
+  innerId: string;
 }
 
 export default function FilterMessages({
@@ -84,13 +84,13 @@ export default function FilterMessages({
 }: FilterMessagesProps): JSX.Element {
   const filteredMessages: Message[] = messages.filter(
     (message: Message) => message.field === fieldKey
-  )
+  );
 
   if (!filteredMessages.length) {
-    return
+    return;
   }
   if (innerId) {
-    return <Error id={innerId}>{filteredMessages[0].message}</Error>
+    return <Error id={innerId}>{filteredMessages[0].message}</Error>;
   }
 
   return (
@@ -99,7 +99,7 @@ export default function FilterMessages({
         <li key={message.id}>{message.message}</li>
       ))}
     </ul>
-  )
+  );
 }
 ```
 

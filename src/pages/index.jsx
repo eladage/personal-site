@@ -272,10 +272,6 @@ export default function Home({ articles }) {
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             👋 Hey I’m Eric and this is my narcissistic corner of the internet.
           </p>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            This site is still a work in progress but slowly getting there as
-            time allows.
-          </p>
           <p className="text-base text-zinc-600 dark:text-zinc-400">
             Currently doing fullstack contract work but on the lookout for a
             good longtime fit.
