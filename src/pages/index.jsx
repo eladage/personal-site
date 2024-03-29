@@ -236,7 +236,7 @@ function Photos() {
             key={image.src}
             className={clsx(
               'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 shadow-lg transition-transform duration-300 ease-in-out hover:rotate-0 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-              rotations[imageIndex % rotations.length],
+              rotations[imageIndex % rotations.length]
             )}
           >
             <Image
@@ -259,7 +259,7 @@ export default function Home({ articles }) {
         <title>Eric Ladage - Software Engineer</title>
         <meta
           name="description"
-          content="👋 Hey I’m Eric and this is my narcissistic corner of the internet."
+          content="Hey I’m Eric and this is my narcissistic corner of the internet."
         />
       </Head>
 
@@ -276,7 +276,7 @@ export default function Home({ articles }) {
       <Container className="mt-9">
         <div className="m-auto flex max-w-2xl flex-col items-center">
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            👋 Hey I’m Eric and this is my narcissistic corner of the internet.
+            Hey I’m Eric and this is my narcissistic corner of the internet.
           </p>
           <p className="text-base text-zinc-600 dark:text-zinc-400">
             Currently doing fullstack contract work but on the lookout for a
