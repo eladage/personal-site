@@ -1,4 +1,4 @@
-import { Container } from '@/components/Container'
+import { Container } from '@/components/Container';
 
 export function SimpleLayout({ title, titleAction, intro, children }) {
   return (
@@ -16,5 +16,5 @@ export function SimpleLayout({ title, titleAction, intro, children }) {
       </header>
       <div className="mt-16 sm:mt-20">{children}</div>
     </Container>
-  )
+  );
 }

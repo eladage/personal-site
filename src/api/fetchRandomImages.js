@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export const fetchRandomImages = async () => {
   const response = await axios.get('https://api.unsplash.com/photos/random', {
@@ -6,6 +6,6 @@ export const fetchRandomImages = async () => {
       client_id: process.env.NEXT_PUBLIC_UNSPLASH_CLIENT_KEY,
       count: 20,
     },
-  })
-  return response.data
-}
+  });
+  return response.data;
+};

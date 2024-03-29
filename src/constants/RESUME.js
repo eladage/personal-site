@@ -1,8 +1,8 @@
-import logoKU from '@/images/logos/ku.png'
-import logoSW from '@/images/logos/sw.png'
-import logoCerner from '@/images/logos/cerner.png'
-import logoCRL from '@/images/logos/crl.png'
-import logoJJ from '@/images/logos/jj.png'
+import logoKU from '@/images/logos/ku.png';
+import logoSW from '@/images/logos/sw.png';
+import logoCerner from '@/images/logos/cerner.png';
+import logoCRL from '@/images/logos/crl.png';
+import logoJJ from '@/images/logos/jj.png';
 
 const RESUME = [
   {
@@ -105,6 +105,6 @@ const RESUME = [
       </>
     ),
   },
-]
+];
 
-export default RESUME
+export default RESUME;

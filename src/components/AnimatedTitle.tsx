@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react';
 
 const textSizeMapping = {
   xs: 'text-xs',
@@ -9,15 +9,15 @@ const textSizeMapping = {
   '2xl': 'text-2xl',
   '3xl': 'text-3xl',
   '4xl': 'text-4xl',
-}
+};
 
 interface AnimatedTitleProps {
-  title: string
-  allowUppercase?: boolean
-  allowNumbers?: boolean
-  allowRerender?: boolean
-  showCursor?: boolean
-  textSize?: keyof typeof textSizeMapping
+  title: string;
+  allowUppercase?: boolean;
+  allowNumbers?: boolean;
+  allowRerender?: boolean;
+  showCursor?: boolean;
+  textSize?: keyof typeof textSizeMapping;
 }
 
 export function AnimatedTitle({
@@ -29,63 +29,63 @@ export function AnimatedTitle({
   textSize = '2xl',
 }: AnimatedTitleProps) {
   const [displayTitle, setDisplayTitle] = useState(
-    title.split('').map(() => '')
-  )
-  const [completed, setCompleted] = useState<boolean>(false)
-  const timeoutRef = useRef<number | undefined>()
-  const [isBlinking, setIsBlinking] = useState<boolean>(true)
+    title.split('').map(() => ''),
+  );
+  const [completed, setCompleted] = useState<boolean>(false);
+  const timeoutRef = useRef<number | undefined>();
+  const [isBlinking, setIsBlinking] = useState<boolean>(true);
 
-  const textSizeClass = textSizeMapping[textSize]
+  const textSizeClass = textSizeMapping[textSize];
 
   const randomCharacter = () => {
-    let characters = 'abcdefghijklmnopqrstuvwxyz.'
+    let characters = 'abcdefghijklmnopqrstuvwxyz.';
     if (allowUppercase) {
-      characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ '
+      characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ';
     }
     if (allowNumbers) {
-      characters += '0123456789'
+      characters += '0123456789';
     }
-    return characters.charAt(Math.floor(Math.random() * characters.length))
-  }
+    return characters.charAt(Math.floor(Math.random() * characters.length));
+  };
 
   useEffect(() => {
     if (!completed) {
-      const newTitle = [...displayTitle]
-      let allCharactersSet = true
+      const newTitle = [...displayTitle];
+      let allCharactersSet = true;
 
       newTitle.forEach((char, index) => {
         if (char !== title[index]) {
-          allCharactersSet = false
-          newTitle[index] = randomCharacter()
+          allCharactersSet = false;
+          newTitle[index] = randomCharacter();
         }
-      })
+      });
 
       if (allCharactersSet) {
-        setCompleted(true)
+        setCompleted(true);
       } else {
         timeoutRef.current = setTimeout(
           () => setDisplayTitle(newTitle),
-          8
-        ) as any
+          8,
+        ) as any;
       }
     }
     const timer = setTimeout(() => {
-      setIsBlinking(false)
-    }, 10000)
+      setIsBlinking(false);
+    }, 10000);
 
     return () => {
-      clearTimeout(timeoutRef.current)
-      clearTimeout(timer)
-    }
-  }, [displayTitle, title, completed, isBlinking])
+      clearTimeout(timeoutRef.current);
+      clearTimeout(timer);
+    };
+  }, [displayTitle, title, completed, isBlinking]);
 
   const handleMouseOver = () => {
     if (completed && allowRerender) {
-      setIsBlinking(true)
-      setCompleted(false)
-      setDisplayTitle(title.split('').map(() => ''))
+      setIsBlinking(true);
+      setCompleted(false);
+      setDisplayTitle(title.split('').map(() => ''));
     }
-  }
+  };
 
   return (
     <h1
@@ -101,5 +101,5 @@ export function AnimatedTitle({
         </span>
       )}
     </h1>
-  )
+  );
 }

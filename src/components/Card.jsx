@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import clsx from 'clsx'
+import Link from 'next/link';
+import Image from 'next/image';
+import clsx from 'clsx';
 
 function ChevronRightIcon(props) {
   return (
@@ -12,7 +12,7 @@ function ChevronRightIcon(props) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function Card({ as: Component = 'div', className, children }) {
@@ -22,7 +22,7 @@ export function Card({ as: Component = 'div', className, children }) {
     >
       {children}
     </Component>
-  )
+  );
 }
 
 Card.Link = function CardLink({ children, ...props }) {
@@ -34,8 +34,8 @@ Card.Link = function CardLink({ children, ...props }) {
         <span className="relative z-10">{children}</span>
       </Link>
     </>
-  )
-}
+  );
+};
 
 Card.Title = function CardTitle({
   as: Component = 'h2',
@@ -64,16 +64,16 @@ Card.Title = function CardTitle({
         </>
       )}
     </Component>
-  )
-}
+  );
+};
 
 Card.Description = function CardDescription({ as: Component = 'p', children }) {
   return (
     <Component className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400 sm:list-disc">
       {children}
     </Component>
-  )
-}
+  );
+};
 
 Card.Cta = function CardCta({ children }) {
   return (
@@ -84,24 +84,24 @@ Card.Cta = function CardCta({ children }) {
       {children}
       <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
     </div>
-  )
-}
+  );
+};
 
 Card.Subtitle = function CardSubtitle({ children }) {
   return (
     <span className="relative z-10 mt-1 text-sm text-zinc-500 dark:text-pink-500">
       {children}
     </span>
-  )
-}
+  );
+};
 
 Card.Info = function CardInfo({ children }) {
   return (
     <p className="relative z-10 mt-1 text-sm text-zinc-500 dark:text-zinc-400">
       {children}
     </p>
-  )
-}
+  );
+};
 
 Card.Eyebrow = function CardEyebrow({
   as: Component = 'p',
@@ -115,7 +115,7 @@ Card.Eyebrow = function CardEyebrow({
       className={clsx(
         className,
         'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
-        decorate && 'pl-3.5'
+        decorate && 'pl-3.5',
       )}
       {...props}
     >
@@ -129,5 +129,5 @@ Card.Eyebrow = function CardEyebrow({
       )}
       {children}
     </Component>
-  )
-}
+  );
+};

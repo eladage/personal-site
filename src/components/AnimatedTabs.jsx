@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-import NAVIGATION_ITEMS from '../constants/NAVIGATION_ITEMS'
+import NAVIGATION_ITEMS from '../constants/NAVIGATION_ITEMS';
 
 export default function AnimatedTabs() {
-  let pathname = useRouter().pathname
+  let pathname = useRouter().pathname;
 
   return (
     <nav className="group pointer-events-auto relative hidden md:block">
@@ -38,5 +38,5 @@ export default function AnimatedTabs() {
         </ul>
       </div>
     </nav>
-  )
+  );
 }

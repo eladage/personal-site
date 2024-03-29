@@ -1,4 +1,4 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+import { ArticleLayout } from '@/components/ArticleLayout';
 
 export const meta = {
   author: 'Eric Ladage',
@@ -6,24 +6,24 @@ export const meta = {
   title: 'Typescript Generics',
   description:
     'What are generics in typescript and how can they be used to make your code more flexible and reusable?',
-}
+};
 
-export default (props) => <ArticleLayout meta={meta} {...props} />
+export default (props) => <ArticleLayout meta={meta} {...props} />;
 
 ```ts
 function explain<WhatTheFuckIsThis>(arg: WhatTheFuckIsThis): WhatTheFuckIsThis {
-  console.log(`This is a ${arg.constructor.name}`)
+  console.log(`This is a ${arg.constructor.name}`);
 
-  return arg
+  return arg;
 }
 
 // ✅
-let num = explain<number>(123) // Logs: Number
-let str = explain<string>('123') // Logs: String
+let num = explain<number>(123); // Logs: Number
+let str = explain<string>('123'); // Logs: String
 
 // ❌
-let badNum = explain<number>('123') // Argument of type 'string' is not assignable to parameter of type 'number'.
-let badStr = explain<str>(123) // Argument of type 'number' is not assignable to parameter of type 'string'.
+let badNum = explain<number>('123'); // Argument of type 'string' is not assignable to parameter of type 'number'.
+let badStr = explain<str>(123); // Argument of type 'number' is not assignable to parameter of type 'string'.
 ```
 
 So what exactly does the parameter in brackets after the function name mean? It's called a generic type parameter, and it allows us to write functions that can work with different types of data while still maintaining type safety.
@@ -36,7 +36,7 @@ A generic function might look something like this:
 
 ```ts
 function identity<T>(arg: T): T {
-  return arg
+  return arg;
 }
 ```
 
@@ -60,26 +60,26 @@ Here's some maybe more practical examples:
 
 ```ts
 function getLastItem<T>(arr: T[]): T {
-  return arr[arr.length - 1]
+  return arr[arr.length - 1];
 }
 
-let numArr = [1, 2, 3, 4, 5]
-let strArr = ['Apple', 'Banana', 'Cherry']
+let numArr = [1, 2, 3, 4, 5];
+let strArr = ['Apple', 'Banana', 'Cherry'];
 
-console.log(getLastItem(numArr)) // Outputs: 5
-console.log(getLastItem(strArr)) // Outputs: 'Cherry'
+console.log(getLastItem(numArr)); // Outputs: 5
+console.log(getLastItem(strArr)); // Outputs: 'Cherry'
 ```
 
 ```ts
 function getLastItem<T>(arr: T[]): T {
-  return arr[arr.length - 1]
+  return arr[arr.length - 1];
 }
 
-let numArr = [1, 2, 3, 4, 5]
-let strArr = ['Apple', 'Banana', 'Cherry']
+let numArr = [1, 2, 3, 4, 5];
+let strArr = ['Apple', 'Banana', 'Cherry'];
 
-console.log(getLastItem<string>(numArr)) // Outputs: 5
-console.log(getLastItem<string>(strArr)) // Outputs: 'Cherry'
+console.log(getLastItem<string>(numArr)); // Outputs: 5
+console.log(getLastItem<string>(strArr)); // Outputs: 'Cherry'
 ```
 
 In this example, getLastItem is a generic function that can work with arrays of any type. The type T is replaced with the actual type of the array when the function is called, and TypeScript enforces that the return type matches the type of the array's elements.

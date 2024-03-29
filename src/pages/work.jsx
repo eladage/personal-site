@@ -1,13 +1,13 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from 'next/head';
+import Image from 'next/image';
 
-import { Card } from '@/components/Card'
-import { Section } from '@/components/Section'
-import { SimpleLayout } from '@/components/SimpleLayout'
-import { Button } from '@/components/Button'
-import ArrowDownIcon from '@/icons/ArrowDown'
-import kbImage from '@/images/kb.jpg'
-import RESUME from '@/constants/RESUME'
+import { Card } from '@/components/Card';
+import { Section } from '@/components/Section';
+import { SimpleLayout } from '@/components/SimpleLayout';
+import { Button } from '@/components/Button';
+import ArrowDownIcon from '@/icons/ArrowDown';
+import kbImage from '@/images/kb.jpg';
+import RESUME from '@/constants/RESUME';
 
 function ToolsSection({ children, ...props }) {
   return (
@@ -16,7 +16,7 @@ function ToolsSection({ children, ...props }) {
         {children}
       </ul>
     </Section>
-  )
+  );
 }
 
 function Tool({
@@ -41,7 +41,7 @@ function Tool({
       </div>
       <Card.Description as={descriptionElement}>{children}</Card.Description>
     </Card>
-  )
+  );
 }
 
 export default function Uses() {
@@ -135,5 +135,5 @@ export default function Uses() {
         </div>
       </SimpleLayout>
     </>
-  )
+  );
 }

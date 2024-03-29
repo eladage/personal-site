@@ -1,23 +1,23 @@
-import { MouseEvent } from 'react'
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
+import { MouseEvent } from 'react';
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 
 interface SpotlightCardProps {
-  spotlightSize?: number
-  children: React.ReactNode
+  spotlightSize?: number;
+  children: React.ReactNode;
 }
 
 export function SpotlightCard({
   children,
   spotlightSize = 500,
 }: SpotlightCardProps): JSX.Element {
-  let mouseX = useMotionValue(0)
-  let mouseY = useMotionValue(0)
+  let mouseX = useMotionValue(0);
+  let mouseY = useMotionValue(0);
 
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-    let { left, top } = currentTarget.getBoundingClientRect()
+    let { left, top } = currentTarget.getBoundingClientRect();
 
-    mouseX.set(clientX - left)
-    mouseY.set(clientY - top)
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
   }
 
   return (
@@ -33,5 +33,5 @@ export function SpotlightCard({
       />
       {children}
     </div>
-  )
+  );
 }

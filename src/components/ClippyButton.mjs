@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 // this is quite possibly the worst code I've ever written... so far...
 
 export default function ClippyButton({ title }) {
-  const [showClippy, setShowClippy] = useState(false)
-  const [agent, setAgent] = useState(null)
+  const [showClippy, setShowClippy] = useState(false);
+  const [agent, setAgent] = useState(null);
 
   useEffect(() => {
     if (showClippy) {
@@ -12,33 +12,34 @@ export default function ClippyButton({ title }) {
         clippyModule.load({
           name: 'Clippy',
           successCb: (agent) => {
-            const clippyElement = document.querySelector('.clippy')
-            const clippySpeechBubble = document.querySelector('.clippy-balloon')
+            const clippyElement = document.querySelector('.clippy');
+            const clippySpeechBubble =
+              document.querySelector('.clippy-balloon');
 
             // remove ability to move clippy
-            clippyElement.style.pointerEvents = 'none'
+            clippyElement.style.pointerEvents = 'none';
 
-            agent.show()
-            setAgent(agent)
+            agent.show();
+            setAgent(agent);
 
             setTimeout(() => {
-              agent.animate()
-            }, 2000)
+              agent.animate();
+            }, 2000);
           },
           failCb: (e) => {
-            console.error(e)
+            console.error(e);
           },
-        })
-      })
+        });
+      });
     }
 
     return () => {
       if (agent) {
-        agent.hide()
-        agent.stop()
+        agent.hide();
+        agent.stop();
       }
-    }
-  }, [showClippy])
+    };
+  }, [showClippy]);
 
   return (
     <>
@@ -52,5 +53,5 @@ export default function ClippyButton({ title }) {
         </span>
       </button>
     </>
-  )
+  );
 }

@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Head from 'next/head'
-import { SimpleLayout } from '@/components/SimpleLayout'
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Head from 'next/head';
+import { SimpleLayout } from '@/components/SimpleLayout';
 
-import { fetchRandomImages } from '../api/fetchRandomImages'
-import LoadSpinner from '@/components/LoadSpinner'
-import PhotoDetailModal from '@/components/PhotoDetailModal'
+import { fetchRandomImages } from '../api/fetchRandomImages';
+import LoadSpinner from '@/components/LoadSpinner';
+import PhotoDetailModal from '@/components/PhotoDetailModal';
 
 export default function Photos() {
-  const [images, setImages] = useState([])
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
-        setImages(await fetchRandomImages())
+        setImages(await fetchRandomImages());
       } catch (error) {
-        setError(error)
-        console.error('Error fetching random images:', error)
+        setError(error);
+        console.error('Error fetching random images:', error);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
 
   const handleImageClick = (image) => {
-    setSelectedImage(image)
-    setIsModalOpen(true)
-  }
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
 
   return (
     <>
@@ -92,10 +92,10 @@ export default function Photos() {
         image={selectedImage}
         isOpen={isModalOpen}
         onClose={() => {
-          setIsModalOpen(false)
-          setSelectedImage(null)
+          setIsModalOpen(false);
+          setSelectedImage(null);
         }}
       />
     </>
-  )
+  );
 }

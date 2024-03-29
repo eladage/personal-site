@@ -1,10 +1,10 @@
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react';
 
 export default function PhotoDetailModal({ isOpen, onClose, image }) {
-  if (!image) return null
+  if (!image) return null;
 
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
@@ -66,5 +66,5 @@ export default function PhotoDetailModal({ isOpen, onClose, image }) {
         </div>
       </Dialog>
     </Transition>
-  )
+  );
 }

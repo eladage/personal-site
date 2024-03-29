@@ -1,6 +1,6 @@
-import nextMDX from '@next/mdx'
-import remarkGfm from 'remark-gfm'
-import rehypePrism from '@mapbox/rehype-prism'
+import nextMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
+import rehypePrism from '@mapbox/rehype-prism';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -12,7 +12,7 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'plus.unsplash.com'],
   },
-}
+};
 
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
@@ -20,6 +20,6 @@ const withMDX = nextMDX({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypePrism],
   },
-})
+});
 
-export default withMDX(nextConfig)
+export default withMDX(nextConfig);

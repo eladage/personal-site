@@ -1,10 +1,10 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
-import { Container } from '@/components/Container'
-import ClippyButton from './ClippyButton.mjs'
-import ConfettiWrapper from './ConfettiWrapper'
+import { Container } from '@/components/Container';
+import ClippyButton from './ClippyButton.mjs';
+import ConfettiWrapper from './ConfettiWrapper';
 
-import NAVIGATION_ITEMS from '../constants/NAVIGATION_ITEMS.js'
+import NAVIGATION_ITEMS from '../constants/NAVIGATION_ITEMS.js';
 
 function NavLink({ href, children }) {
   return (
@@ -14,7 +14,7 @@ function NavLink({ href, children }) {
     >
       {children}
     </Link>
-  )
+  );
 }
 
 export function Footer() {
@@ -47,5 +47,5 @@ export function Footer() {
         </div>
       </Container.Outer>
     </footer>
-  )
+  );
 }

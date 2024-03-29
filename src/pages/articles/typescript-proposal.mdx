@@ -83,7 +83,7 @@ export default function FilterMessages({
   innerId,
 }: FilterMessagesProps): JSX.Element {
   const filteredMessages: Message[] = messages.filter(
-    (message: Message) => message.field === fieldKey
+    (message: Message) => message.field === fieldKey,
   );
 
   if (!filteredMessages.length) {
