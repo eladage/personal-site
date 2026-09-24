@@ -36,7 +36,7 @@ export default function App({ Component, pageProps, router }) {
           --font-mono: ${mono.style.fontFamily};
         }
       `}</style>
-      <div className="relative flex min-h-full flex-col">
+      <div className="relative flex flex-auto flex-col">
         <Header />
         <main className="flex-auto">
           <Component previousPathname={previousPathname} {...pageProps} />

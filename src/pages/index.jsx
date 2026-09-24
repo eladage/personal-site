@@ -53,6 +53,7 @@ function Hero() {
           <AsciiArt
             art={NAME_WIDE}
             label="Eric Ladage"
+            scramble
             className="hidden sm:block"
             style={{
               fontSize:
@@ -62,6 +63,7 @@ function Hero() {
           <AsciiArt
             art={NAME_STACKED}
             label="Eric Ladage"
+            scramble
             className="sm:hidden"
             style={{
               fontSize: 'calc((100vw - 2.5rem) / (var(--ascii-cols) * 0.6))',

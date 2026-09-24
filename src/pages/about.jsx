@@ -64,7 +64,7 @@ export default function About() {
               />
               <div className="flex flex-col gap-4 text-sm leading-7 text-muted">
                 <p>{`Been professionally writing code since around 2015. Slowly becoming not terrible at it...`}</p>
-                <p>{`My code is being ran in hospitals all around the world. I've helped build ecommerce platforms from scratch and am currently working to build education tools for my alma mater.`}</p>
+                <p>{`My code is being ran in hospitals all around the world. I've helped build ecommerce and education platforms from scratch and am currently leading a team of engineers working on the payments frontend for a banking site that gets millions of daily visits.`}</p>
                 <p>{`Currently living in San Clemente, CA with my girlfriend and our dog, Blueberry.`}</p>
               </div>
               <Button href="/Resume.pdf" className="mt-4 w-full py-3">

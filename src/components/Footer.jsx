@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 
 import { Container } from '@/components/Container';
 import { AsciiRule } from '@/components/AsciiRule';
-import ClippyButton from './ClippyButton.mjs';
-import ConfettiWrapper from './ConfettiWrapper';
 
 import NAVIGATION_ITEMS from '../constants/NAVIGATION_ITEMS.js';
 
@@ -40,11 +38,6 @@ export function Footer() {
               ./rss
             </Link>
           </nav>
-          <div className="sm:text-right">
-            <ConfettiWrapper>
-              <ClippyButton title="need help?" />
-            </ConfettiWrapper>
-          </div>
         </div>
       </Container>
       <div className="border-t border-line bg-panel text-xs">

@@ -40,6 +40,17 @@ export default function Document() {
     <Html className="h-full antialiased" lang="en">
       <Head>
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />
+        {/* status bar / browser chrome color; matches --bg in tailwind.css */}
+        <meta
+          name="theme-color"
+          content="#f3f0e8"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#0c0c0b"
+          media="(prefers-color-scheme: dark)"
+        />
         <link
           rel="alternate"
           type="application/rss+xml"

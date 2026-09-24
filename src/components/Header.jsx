@@ -6,6 +6,8 @@ import clsx from 'clsx';
 
 import { Container } from '@/components/Container';
 import { AnimatedTitle } from '@/components/AnimatedTitle';
+import ClippyButton from '@/components/ClippyButton.mjs';
+import ConfettiWrapper from '@/components/ConfettiWrapper';
 import avatarImage from '@/images/avatar.jpg';
 
 import NAVIGATION_ITEMS from '../constants/NAVIGATION_ITEMS';
@@ -32,7 +34,7 @@ function Navigation() {
                   'block px-1.5 py-1 transition-colors sm:px-2',
                   isActive
                     ? 'bg-accent font-bold text-bg'
-                    : 'text-muted hover:bg-panel hover:text-fg',
+                    : 'text-muted hover:bg-panel hover:text-fg'
                 )}
               >
                 <span className={isActive ? '' : 'text-faint'}>
@@ -118,40 +120,60 @@ export function Header() {
   useNumberKeyNavigation();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur">
-      <Container>
-        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-3">
-          <Link
-            href="/"
-            aria-label="Home"
-            className="group flex min-w-0 items-center gap-3"
-          >
-            <Image
-              src={avatarImage}
-              alt=""
-              sizes="2rem"
-              className="h-8 w-8 flex-none border border-line object-cover grayscale transition group-hover:grayscale-0"
-              priority
-            />
-            <span className="flex min-w-0 items-baseline gap-2 text-sm">
-              <AnimatedTitle
-                as="span"
-                title="eriic.dev"
-                textSize="sm"
-                className="text-ok"
+    <>
+      {/* iOS 26 Safari tints the status-bar area from the background-color and
+          backdrop-filter of fixed/sticky elements within ~4px of the top. If
+          that color isn't solid, it shows blurred page content there instead.
+          So the header itself stays transparent (its blur lives on an absolute
+          child, which Safari ignores), and this solid bar is what it samples. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-1 bg-bg"
+      />
+      <header className="sticky top-0 z-50 border-b border-line">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-bg/90 backdrop-blur"
+        />
+        <Container>
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-3">
+            <Link
+              href="/"
+              aria-label="Home"
+              className="group flex min-w-0 items-center gap-3"
+            >
+              <Image
+                src={avatarImage}
+                alt=""
+                sizes="2rem"
+                className="h-8 w-8 flex-none border border-line object-cover grayscale transition group-hover:grayscale-0"
+                priority
               />
-              <span className="truncate text-muted">
-                :{cwd}
-                <span className="text-accent">$</span>
+              <span className="flex min-w-0 items-baseline gap-2 text-sm">
+                <AnimatedTitle
+                  as="span"
+                  title="eriic.dev"
+                  textSize="sm"
+                  className="text-ok"
+                />
+                <span className="truncate text-muted">
+                  :{cwd}
+                  <span className="text-accent">$</span>
+                </span>
               </span>
-            </span>
-          </Link>
-          <div className="flex w-full items-center justify-between gap-3 md:w-auto md:justify-end">
-            <Navigation />
-            <ModeToggle />
+            </Link>
+            <div className="flex w-full items-center justify-between gap-3 md:w-auto md:justify-end">
+              <Navigation />
+              <div className="flex flex-none items-center gap-2">
+                <ConfettiWrapper className="flex">
+                  <ClippyButton title="need help?" />
+                </ConfettiWrapper>
+                <ModeToggle />
+              </div>
+            </div>
           </div>
-        </div>
-      </Container>
-    </header>
+        </Container>
+      </header>
+    </>
   );
 }

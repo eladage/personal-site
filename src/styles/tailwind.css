@@ -31,6 +31,17 @@
     color-scheme: dark;
   }
 
+  /* iOS Safari's fallback color for the status-bar area */
+  html {
+    @apply bg-bg;
+  }
+
+  /* Next's root wrapper sits between body and the layout; let it fill the
+     body so the footer can sit at the bottom on short pages */
+  #__next {
+    @apply flex flex-auto flex-col;
+  }
+
   body {
     @apply bg-bg font-mono text-fg;
     /* dot-matrix paper texture */
