@@ -152,7 +152,9 @@ function Photos() {
       <Container>
         <Prompt>ls ~/photos</Prompt>
       </Container>
-      <div className="hide-scrollbar mt-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:px-8">
+      {/* the scroller clips on both axes, so pt-1 leaves room for the photos'
+          4px hover lift (mt-3 keeps the spacing the same as before) */}
+      <div className="hide-scrollbar mt-3 flex snap-x gap-4 overflow-x-auto px-4 pb-2 pt-1 sm:px-8">
         {PHOTOS.map(({ image, name }, imageIndex) => (
           <figure
             key={image.src}
