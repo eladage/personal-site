@@ -1,17 +1,17 @@
-import { ArticleLayout } from '@/components/ArticleLayout';
+import { PostLayout } from '@/components/PostLayout';
 import Image from 'next/image';
 import ifIHadOneGIF from './if-i-had-one.gif';
 
 export const meta = {
   author: 'Eric Ladage',
   date: '2022-12-31',
-  title: 'Placeholder Article with IMAGES',
+  title: 'Placeholder Post with IMAGES',
   description: 'Lorem ipsum whatever man',
 };
 
-export default (props) => <ArticleLayout meta={meta} {...props} />;
+export default (props) => <PostLayout meta={meta} {...props} />;
 
-This is where some cool article with like images and whatever would be...
+This is where some cool post with like images and whatever would be...
 
 <Image src={ifIHadOneGIF} alt="" />
 

@@ -33,3 +33,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# full-size camera files; `npm run images` writes web copies to src/images/photos
+/originals/

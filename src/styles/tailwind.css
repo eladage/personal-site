@@ -81,16 +81,9 @@
     @apply text-accent underline decoration-dashed underline-offset-4 transition-colors hover:bg-accent hover:text-bg hover:no-underline;
   }
 
-  /* Photos read as terminal captures until hovered */
+  /* Photos get CRT scanlines until hovered */
   .crt {
     @apply relative overflow-hidden border border-line bg-panel;
-  }
-  .crt img {
-    @apply grayscale transition duration-500;
-    filter: grayscale(1) contrast(1.15) brightness(0.95);
-  }
-  .crt:hover img {
-    filter: none;
   }
   .crt::after {
     content: '';

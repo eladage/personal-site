@@ -6,7 +6,7 @@ import { Container } from '@/components/Container';
 import { Prose } from '@/components/Prose';
 import { AsciiRule } from '@/components/AsciiRule';
 
-export function ArticleLayout({
+export function PostLayout({
   children,
   meta,
   isRssFeed = false,
@@ -33,14 +33,14 @@ export function ArticleLayout({
             <button
               type="button"
               onClick={() => router.back()}
-              aria-label="Go back to articles"
+              aria-label="Go back to the blog"
               className={backClassName}
             >
               &larr; cd ..
             </button>
           ) : (
-            <Link href="/articles" className={backClassName}>
-              &larr; cd ../articles
+            <Link href="/blog" className={backClassName}>
+              &larr; cd ../blog
             </Link>
           )}
           <article className="mt-8">

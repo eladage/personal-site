@@ -30,7 +30,7 @@ export const NOT_FOUND = String.raw`
      ██║╚██████╔╝     ██║
      ╚═╝ ╚═════╝      ╚═╝`.slice(1);
 
-// Blueberry, from src/images/photos/blueberry-outline.png
+// Blueberry, from src/images/blueberry-outline.png
 // (80 cols, equalized + sharpened, darker = denser).
 export const BLUEBERRY = String.raw`
                                             ::-=+=

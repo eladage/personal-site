@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import { AsciiField } from '@/components/AsciiField';
 import { AsciiRule } from '@/components/AsciiRule';
 import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
+import { Lightbox } from '@/components/Lightbox';
 import { Panel } from '@/components/Panel';
 import { Prompt } from '@/components/Prompt';
 import ConfettiWrapper from '@/components/ConfettiWrapper';
@@ -18,14 +20,9 @@ import {
   EmailIcon,
 } from '@/components/SocialIcons';
 
-import image1 from '@/images/photos/image-1.jpg';
-import image2 from '@/images/photos/image-2.jpg';
-import image3 from '@/images/photos/image-3.jpg';
-import image4 from '@/images/photos/image-4.jpg';
-import image5 from '@/images/photos/image-5.jpg';
 import { NAME_STACKED, NAME_WIDE } from '@/constants/ASCII';
 import { generateRssFeed } from '@/lib/generateRssFeed';
-import { getAllArticles } from '@/lib/getAllArticles';
+import { getAllPosts } from '@/lib/getAllPosts';
 import RESUME from '@/constants/RESUME';
 
 const SOCIALS = [
@@ -129,62 +126,94 @@ function Likes() {
   );
 }
 
+// Every image in src/images/photos, in filename order. webpack bundles each
+// one at build time like a static import, so next/image still gets its
+// dimensions and blur placeholder. Add or remove files; no code changes needed.
+const photoContext = require.context(
+  '../images/photos',
+  false,
+  /\.(jpe?g|png|webp|avif)$/i
+);
+const PHOTOS = photoContext
+  .keys()
+  // webpack also lists each file under its baseUrl path; keep one of each
+  .filter((key) => key.startsWith('./'))
+  .sort()
+  .map((key) => ({
+    image: photoContext(key).default,
+    name: key.replace('./', ''),
+  }));
+
 function Photos() {
-  let images = [image1, image2, image3, image4, image5];
+  let [openIndex, setOpenIndex] = useState(null);
 
   return (
     <section className="mt-16">
       <Container>
         <Prompt>ls ~/photos</Prompt>
       </Container>
-      <div className="hide-scrollbar mt-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:px-8 lg:justify-center">
-        {images.map((image, imageIndex) => (
-          <figure key={image.src} className="flex-none snap-start">
-            <div className="crt aspect-[9/10] w-44 sm:w-60">
+      <div className="hide-scrollbar mt-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:px-8">
+        {PHOTOS.map(({ image, name }, imageIndex) => (
+          <figure
+            key={image.src}
+            // auto margins center the row when it fits, unlike justify-center,
+            // which pushes the first photos out of scroll reach when it doesn't
+            className="flex-none snap-start first:ml-auto last:mr-auto"
+          >
+            <button
+              type="button"
+              aria-label={`Open ${name}`}
+              onClick={() => setOpenIndex(imageIndex)}
+              className="crt block aspect-[9/10] w-44 cursor-zoom-in sm:w-60"
+            >
               <Image
                 src={image}
                 alt=""
                 sizes="(min-width: 640px) 15rem, 11rem"
                 className="absolute inset-0 h-full w-full object-cover"
               />
-            </div>
-            <figcaption className="mt-2 text-xs text-faint">
-              image-{imageIndex + 1}.jpg
-            </figcaption>
+            </button>
+            <figcaption className="mt-2 text-xs text-faint">{name}</figcaption>
           </figure>
         ))}
       </div>
+      <Lightbox
+        photos={PHOTOS}
+        index={openIndex}
+        onClose={() => setOpenIndex(null)}
+        onIndexChange={setOpenIndex}
+      />
     </section>
   );
 }
 
-function Articles({ articles }) {
+function Posts({ posts }) {
   return (
     <Panel
-      title="~/articles"
+      title="~/blog"
       action={
-        <Link href="/articles" className="text-muted hover:text-accent">
+        <Link href="/blog" className="text-muted hover:text-accent">
           more →
         </Link>
       }
     >
       <ul className="space-y-6">
-        {articles.map((article) => (
-          <li key={article.slug}>
-            <Link href={`/articles/${article.slug}`} className="group block">
+        {posts.map((post) => (
+          <li key={post.slug}>
+            <Link href={`/blog/${post.slug}`} className="group block">
               <p className="flex flex-wrap gap-x-3 text-xs">
-                <time dateTime={article.date} className="text-warn">
-                  {article.date}
+                <time dateTime={post.date} className="text-warn">
+                  {post.date}
                 </time>
                 <span className="text-faint group-hover:text-accent">
-                  {article.slug}.mdx
+                  {post.slug}.mdx
                 </span>
               </p>
               <h3 className="mt-1 text-sm font-bold text-fg group-hover:text-accent">
-                {article.title}
+                {post.title}
               </h3>
               <p className="mt-1 text-xs leading-6 text-muted">
-                {article.description}
+                {post.description}
               </p>
             </Link>
           </li>
@@ -268,7 +297,7 @@ function Resume() {
   );
 }
 
-export default function Home({ articles }) {
+export default function Home({ posts }) {
   return (
     <>
       <Head>
@@ -287,7 +316,7 @@ export default function Home({ articles }) {
       <Container className="mt-16">
         <AsciiRule pattern="·:" className="mb-12" />
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <Articles articles={articles} />
+          <Posts posts={posts} />
           <Resume />
         </div>
       </Container>
@@ -302,7 +331,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      articles: (await getAllArticles())
+      posts: (await getAllPosts())
         .slice(0, 4)
         .map(({ component, ...meta }) => meta),
     },

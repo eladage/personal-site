@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -5,6 +6,7 @@ import Link from 'next/link';
 import { AnimatedTitle } from '@/components/AnimatedTitle';
 import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
+import { Lightbox } from '@/components/Lightbox';
 import { Panel } from '@/components/Panel';
 import { Prompt } from '@/components/Prompt';
 import {
@@ -42,7 +44,11 @@ const LINKS = [
   },
 ];
 
+const FRIENDS_PHOTO = [{ image: friendsImage, name: 'friends.jpg' }];
+
 export default function About() {
+  let [openIndex, setOpenIndex] = useState(null);
+
   return (
     <>
       <Head>
@@ -74,17 +80,28 @@ export default function About() {
           </Panel>
           <div className="flex flex-col gap-12 lg:col-span-2">
             <figure>
-              <div className="crt aspect-[4/3] lg:rotate-1">
+              <button
+                type="button"
+                aria-label="Open friends.jpg"
+                onClick={() => setOpenIndex(0)}
+                className="crt block aspect-[4/3] w-full cursor-zoom-in lg:rotate-1"
+              >
                 <Image
                   src={friendsImage}
                   alt=""
                   sizes="(min-width: 1024px) 24rem, 100vw"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-              </div>
+              </button>
               <figcaption className="mt-2 text-xs text-faint">
                 friends.jpg
               </figcaption>
+              <Lightbox
+                photos={FRIENDS_PHOTO}
+                index={openIndex}
+                onClose={() => setOpenIndex(null)}
+                onIndexChange={setOpenIndex}
+              />
             </figure>
             <Panel title="links" as="nav" aria-label="Social links">
               <ul role="list" className="space-y-3 text-sm">

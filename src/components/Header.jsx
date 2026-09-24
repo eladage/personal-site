@@ -146,7 +146,7 @@ export function Header() {
                 src={avatarImage}
                 alt=""
                 sizes="2rem"
-                className="h-8 w-8 flex-none border border-line object-cover grayscale transition group-hover:grayscale-0"
+                className="h-8 w-8 flex-none border border-line object-cover"
                 priority
               />
               <span className="flex min-w-0 items-baseline gap-2 text-sm">

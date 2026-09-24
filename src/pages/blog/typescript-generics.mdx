@@ -1,4 +1,4 @@
-import { ArticleLayout } from '@/components/ArticleLayout';
+import { PostLayout } from '@/components/PostLayout';
 
 export const meta = {
   author: 'Eric Ladage',
@@ -8,7 +8,7 @@ export const meta = {
     'What are generics in typescript and how can they be used to make your code more flexible and reusable?',
 };
 
-export default (props) => <ArticleLayout meta={meta} {...props} />;
+export default (props) => <PostLayout meta={meta} {...props} />;
 
 ```ts
 function explain<WhatTheFuckIsThis>(arg: WhatTheFuckIsThis): WhatTheFuckIsThis {

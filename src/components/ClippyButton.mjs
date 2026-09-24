@@ -26,13 +26,13 @@ function getGreeting(pathname) {
       text: "It looks like you're visiting a personal website. Would you like help judging it?",
     };
   }
-  if (pathname.startsWith('/articles/')) {
+  if (pathname.startsWith('/blog/')) {
     return {
       animation: 'Searching',
       text: "It looks like you're reading a blog post. Would you like me to summarize it? (I can't.)",
     };
   }
-  if (pathname === '/articles') {
+  if (pathname === '/blog') {
     return {
       animation: 'Writing',
       text: "It looks like you're browsing a blog. Would you like me to read them all for you?",

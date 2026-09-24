@@ -13,7 +13,7 @@ export function Footer() {
     pathname === '/'
       ? 'index.jsx'
       : `${pathname.slice(1)}.${
-          pathname.startsWith('/articles/') ? 'mdx' : 'jsx'
+          pathname.startsWith('/blog/') ? 'mdx' : 'jsx'
         }`;
 
   return (
