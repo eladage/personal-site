@@ -1,3 +1,4 @@
+import logoSyf from '@/images/logos/syf.png';
 import logoKU from '@/images/logos/ku.png';
 import logoSW from '@/images/logos/sw.png';
 import logoCerner from '@/images/logos/cerner.png';
@@ -6,11 +7,27 @@ import logoJJ from '@/images/logos/jj.png';
 
 const RESUME = [
   {
+    company: 'Synchrony',
+    title: 'Tech Lead',
+    logo: logoSyf,
+    start: new Date('2024-11-21'),
+    end: new Date(),
+    description: (
+      <>
+        <li>
+          Technical Lead for a team focused on a microfrontend application for
+          making payments.
+        </li>
+        <li>React, Typescript, etc.</li>
+      </>
+    ),
+  },
+  {
     company: 'University of Kansas',
     title: 'Fullstack Contract Work',
     logo: logoKU,
     start: new Date('2022-12-19'),
-    end: new Date(),
+    end: new Date('2024-11-21'),
     description: (
       <>
         <li>
@@ -39,7 +56,6 @@ const RESUME = [
           Org-wide subject matter expert in micro-frontend architecture and
           frontend engineering in general.
         </li>
-
         <li>
           Lead many knowledge sharing events around frontend architectural
           decisions as well as best practices.

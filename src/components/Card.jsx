@@ -69,7 +69,7 @@ Card.Title = function CardTitle({
 
 Card.Description = function CardDescription({ as: Component = 'p', children }) {
   return (
-    <Component className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400 sm:list-disc">
+    <Component className="relative z-10 mt-2 flex flex-col gap-3 text-sm text-zinc-600 dark:text-zinc-400 sm:list-disc sm:gap-0">
       {children}
     </Component>
   );

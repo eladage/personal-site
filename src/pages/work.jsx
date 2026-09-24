@@ -54,7 +54,7 @@ export default function Uses() {
 
       <SimpleLayout
         title="Professional Experience"
-        intro="Developed software professionally in industries from healthcare to ecommerce to education."
+        intro="Experienced software engineer in industries from healthcare to ecommerce to education to finance."
         titleAction={
           <Button href={'/Resume.pdf'} variant="secondary">
             Resume.pdf
@@ -126,7 +126,7 @@ export default function Uses() {
               Spotlight with extra bells/whistles. Also written in Rust™
             </Tool>
             <Tool title="Karabiner">Custom key shortcuts.</Tool>
-            <Tool title="Notion">Notes.</Tool>
+            <Tool title="Obsidian">Notes</Tool>
           </ToolsSection>
         </div>
 
