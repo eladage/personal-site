@@ -97,6 +97,15 @@
   .crt:hover::after {
     @apply opacity-0;
   }
+
+  /* Clickable photos lift onto a solid accent block, like a raised key */
+  button.crt {
+    @apply cursor-pointer transition duration-200;
+  }
+  button.crt:hover,
+  button.crt:focus-visible {
+    @apply border-accent shadow-[4px_4px_0_0_rgb(var(--accent))] outline-none motion-safe:-translate-x-1 motion-safe:-translate-y-1;
+  }
 }
 
 @layer utilities {

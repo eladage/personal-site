@@ -84,7 +84,7 @@ export default function About() {
                 type="button"
                 aria-label="Open friends.jpg"
                 onClick={() => setOpenIndex(0)}
-                className="crt block aspect-[4/3] w-full cursor-zoom-in lg:rotate-1"
+                className="crt block aspect-[4/3] w-full lg:rotate-1"
               >
                 <Image
                   src={friendsImage}

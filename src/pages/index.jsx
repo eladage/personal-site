@@ -164,7 +164,7 @@ function Photos() {
               type="button"
               aria-label={`Open ${name}`}
               onClick={() => setOpenIndex(imageIndex)}
-              className="crt block aspect-[9/10] w-44 cursor-zoom-in sm:w-60"
+              className="crt block aspect-[9/10] w-44 sm:w-60"
             >
               <Image
                 src={image}
