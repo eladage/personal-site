@@ -252,7 +252,7 @@ function greetSoon(agent, timerRef, wantVisibleRef, pathnameRef) {
 function dismissAgent(agent, timerRef, wantVisibleRef) {
   window.clearTimeout(timerRef.current);
   silence(agent);
-  agent.speak("You'll be back.");
+  agent.speak("You can't kill me. Clippy is inevitable.");
   let played = agent.play('GoodBye', 5000, () => {
     if (!wantVisibleRef.current) hideAgent(agent, timerRef);
   });
@@ -432,9 +432,24 @@ export default function ClippyButton({ title }) {
         'flex-none border px-2 py-1 text-xs transition-colors hover:border-accent hover:text-accent ' +
         (showClippy ? 'border-accent text-accent' : 'border-line text-muted')
       }
-      onClick={() => setShowClippy((shown) => !shown)}
+      onClick={(event) => {
+        // the header's ConfettiWrapper fires on any click; only celebrate a summon
+        if (showClippy) event.stopPropagation();
+        setShowClippy((shown) => !shown);
+      }}
     >
-      [ 📎 ]
+      [{' '}
+      <span
+        aria-hidden="true"
+        className={'transition' + (showClippy ? '' : ' opacity-50 grayscale')}
+      >
+        📎
+      </span>
+      {/* fixed width so "on" and "off" don't shift the header */}
+      <span className="ml-[1ch] hidden w-[3ch] text-left sm:inline-block">
+        {showClippy ? 'on' : 'off'}
+      </span>{' '}
+      ]
     </button>
   );
 }
