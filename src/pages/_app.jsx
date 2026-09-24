@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { JetBrains_Mono } from 'next/font/google';
 
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
@@ -6,6 +7,13 @@ import { Analytics } from '@vercel/analytics/react';
 
 import '@/styles/tailwind.css';
 import 'focus-visible';
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '800'],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 function usePrevious(value) {
   let ref = useRef();
@@ -22,14 +30,15 @@ export default function App({ Component, pageProps, router }) {
 
   return (
     <>
-      <div className="fixed inset-0 flex justify-center sm:px-8">
-        <div className="flex w-full max-w-7xl lg:px-8">
-          <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
-        </div>
-      </div>
-      <div className="relative">
+      {/* set on :root so portals (clippy, confetti) pick up the font too */}
+      <style jsx global>{`
+        :root {
+          --font-mono: ${mono.style.fontFamily};
+        }
+      `}</style>
+      <div className="relative flex min-h-full flex-col">
         <Header />
-        <main>
+        <main className="flex-auto">
           <Component previousPathname={previousPathname} {...pageProps} />
         </main>
         <Footer />

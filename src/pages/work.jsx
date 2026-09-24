@@ -1,46 +1,49 @@
 import Head from 'next/head';
 import Image from 'next/image';
 
-import { Card } from '@/components/Card';
 import { Section } from '@/components/Section';
 import { SimpleLayout } from '@/components/SimpleLayout';
 import { Button } from '@/components/Button';
-import ArrowDownIcon from '@/icons/ArrowDown';
-import kbImage from '@/images/kb.jpg';
 import RESUME from '@/constants/RESUME';
 
-function ToolsSection({ children, ...props }) {
-  return (
-    <Section {...props}>
-      <ul role="list" className="space-y-4">
-        {children}
-      </ul>
-    </Section>
-  );
+function formatMonth(date) {
+  return date
+    .toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+    .toLowerCase();
 }
 
-function Tool({
-  title,
-  secondary,
-  image,
-  subtitle,
-  href,
-  descriptionElement,
-  children,
-}) {
+function Job({ job }) {
   return (
-    <Card as="li">
-      <div className="flex w-full items-center gap-4">
-        {image && <Image src={image} alt={title} className="h-12 w-12" />}
-        <div className="w-full">
-          <Card.Title as="h3" href={href} secondary={secondary}>
-            {title}
-          </Card.Title>
-          <Card.Subtitle>{subtitle}</Card.Subtitle>
+    <li className="border border-line bg-bg/80">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-dashed border-line px-5 py-3">
+        {job.logo && (
+          <div className="flex h-9 w-9 flex-none items-center justify-center border border-line bg-white p-1">
+            <Image
+              src={job.logo}
+              alt=""
+              className="h-full w-full object-contain"
+            />
+          </div>
+        )}
+        <div className="min-w-0 flex-auto">
+          <h3 className="text-sm font-bold text-fg">
+            {job.company}
+            {job.current && (
+              <span className="ml-2 font-normal text-ok">(HEAD)</span>
+            )}
+          </h3>
+          <p className="text-xs text-accent">{job.title}</p>
         </div>
+        <p className="text-xs text-warn">
+          {formatMonth(job.start)}
+          <span className="text-faint"> → </span>
+          {job.current ? 'present' : formatMonth(job.end)}
+        </p>
       </div>
-      <Card.Description as={descriptionElement}>{children}</Card.Description>
-    </Card>
+      <ul className="space-y-2 px-5 py-4 text-xs leading-6 text-muted">
+        {job.description}
+      </ul>
+    </li>
   );
 }
 
@@ -53,85 +56,26 @@ export default function Uses() {
       </Head>
 
       <SimpleLayout
+        command="cat experience.md"
         title="Professional Experience"
         intro="Experienced software engineer in industries from healthcare to ecommerce to education to finance."
         titleAction={
-          <Button href={'/Resume.pdf'} variant="secondary">
+          <Button href="/Resume.pdf" variant="secondary">
             Resume.pdf
-            <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />{' '}
+            <span aria-hidden="true" className="text-accent">
+              ↓
+            </span>
           </Button>
         }
       >
-        <div className="space-y-10">
-          <ToolsSection title="Work">
-            {RESUME.map((job, i) => (
-              <Tool
-                key={i}
-                title={job.company}
-                secondary={
-                  job.start.toLocaleDateString('en-US', {
-                    month: 'short',
-                    year: 'numeric',
-                  }) +
-                  ' - ' +
-                  job.end.toLocaleDateString('en-US', {
-                    month: 'short',
-                    year: 'numeric',
-                  })
-                }
-                image={job.logo}
-                subtitle={job.title}
-                descriptionElement="ul"
-              >
-                {job.description}
-              </Tool>
-            ))}
-          </ToolsSection>
-          <ToolsSection title="Languages" subtitle="what I'm currently using">
-            <Tool title="Typescript">
-              Been using typescript for around 3 years now, love the type safety
-              it provides and the intellisense in vscode is a cherry on top.
-            </Tool>
-            <Tool title="React">
-              Started with React in 2018 working for Cerner and have used it in
-              every job since. Simple, easy to understand and the documentation
-              and support is great.
-            </Tool>
-            <Tool title="Node.js" />
-            <Tool title="AWS" />
-            <Tool title="GraphQL" />
-            <Tool title="Postgres">
-              Simple relational databases are still cool.
-            </Tool>
-
-            <Tool title="Tailwind CSS">
-              {`Understandably divisive but really helps me build fast and
-              eventually the long classnames become legible and it's nice to
-              just have them in the same file instead of switching back and
-              forth between css and your js components.`}
-            </Tool>
-            <Tool title="Rust">
-              Spending some down time learning Rust to see what all the hype is
-              about.
-            </Tool>
-          </ToolsSection>
-          <ToolsSection title="Development tools">
-            <Tool title="VSCode">I’m basic.</Tool>
-            <Tool title="Warp">
-              Terminal with extra bells/whistles. Written in Rust™
-            </Tool>
-          </ToolsSection>
-          <ToolsSection title="Productivity">
-            <Tool title="Raycast">
-              Spotlight with extra bells/whistles. Also written in Rust™
-            </Tool>
-            <Tool title="Karabiner">Custom key shortcuts.</Tool>
-            <Tool title="Obsidian">Notes</Tool>
-          </ToolsSection>
-        </div>
-
-        <div className="mt-16 flex aspect-[21/7] flex-none items-center overflow-hidden rounded-xl bg-zinc-100">
-          <Image src={kbImage} alt="My desk" />
+        <div className="space-y-16">
+          <Section title="work">
+            <ol className="space-y-6 [&_ul>li]:relative [&_ul>li]:pl-4 [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:text-accent [&_ul>li]:before:content-['-']">
+              {RESUME.map((job, i) => (
+                <Job key={i} job={job} />
+              ))}
+            </ol>
+          </Section>
         </div>
       </SimpleLayout>
     </>

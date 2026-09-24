@@ -18,6 +18,8 @@ interface AnimatedTitleProps {
   allowRerender?: boolean;
   showCursor?: boolean;
   textSize?: keyof typeof textSizeMapping;
+  as?: 'h1' | 'h2' | 'span';
+  className?: string;
 }
 
 export function AnimatedTitle({
@@ -27,6 +29,8 @@ export function AnimatedTitle({
   allowRerender = true,
   showCursor = false,
   textSize = '2xl',
+  as: Component = 'h1',
+  className = 'text-fg',
 }: AnimatedTitleProps) {
   const [displayTitle, setDisplayTitle] = useState(
     title.split('').map(() => ''),
@@ -88,18 +92,20 @@ export function AnimatedTitle({
   };
 
   return (
-    <h1
-      className={`${textSizeClass} font-mono text-zinc-600 dark:text-zinc-400`}
+    <Component
+      aria-label={title}
+      className={`${textSizeClass} font-mono font-bold ${className}`}
       onMouseOver={handleMouseOver}
     >
-      <span>{displayTitle.join('')}</span>
+      <span aria-hidden="true">{displayTitle.join('')}</span>
       {showCursor && (
         <span
-          className={`${isBlinking ? 'animate-blink' : 'invisible'} text-3xl`}
-        >
-          |
-        </span>
+          aria-hidden="true"
+          className={`${
+            isBlinking ? 'animate-blink' : 'invisible'
+          } ml-px inline-block h-[1em] w-[0.55em] translate-y-[0.15em] bg-accent`}
+        />
       )}
-    </h1>
+    </Component>
   );
 }

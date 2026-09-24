@@ -1,20 +1,22 @@
 import { useId } from 'react';
 
-export function Section({ title, children }) {
+export function Section({ title, subtitle, children }) {
   let id = useId();
 
   return (
-    <section
-      aria-labelledby={id}
-      className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40"
-    >
-      <div className="grid max-w-3xl grid-cols-1 items-baseline gap-y-8 md:grid-cols-4">
-        <h2
-          id={id}
-          className="mb-auto text-sm font-semibold text-zinc-800 dark:text-zinc-100"
-        >
-          {title}
-        </h2>
+    <section aria-labelledby={id}>
+      <div className="grid grid-cols-1 items-baseline gap-y-4 md:grid-cols-4 md:gap-x-8">
+        <div className="md:sticky md:top-24">
+          <h2 id={id} className="text-sm font-bold text-fg">
+            <span className="text-accent">##</span> {title}
+          </h2>
+          {subtitle && (
+            <p className="mt-1 text-xs text-faint">
+              <span className="select-none">{'// '}</span>
+              {subtitle}
+            </p>
+          )}
+        </div>
         <div className="md:col-span-3">{children}</div>
       </div>
     </section>

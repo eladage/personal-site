@@ -5,7 +5,7 @@ export default function LoadSpinner({ size = 8 }) {
     <div role="status">
       <svg
         aria-hidden="true"
-        className={`mr-2 h-${size} w-${size} animate-spin fill-blue-600 text-gray-200 dark:text-gray-600`}
+        className={`mr-2 h-${size} w-${size} animate-spin fill-accent text-line`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

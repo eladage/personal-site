@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 
 // because like, why not?
-export default function ConfettiWrapper({ children }) {
+export default function ConfettiWrapper({ className, children }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function ConfettiWrapper({ children }) {
   };
 
   return (
-    <div onClick={handleClick}>
+    <div className={className} onClick={handleClick}>
       {children}
       <canvas
         ref={canvasRef}

@@ -40,13 +40,13 @@ export default function Photos() {
         <title>Photos - Eric Ladage</title>
         <meta name="description" content="Photos taken by me" />
       </Head>
-      <SimpleLayout title={'Photos'} description={'Photos taken by me'}>
-        <h1 className="mb-8 text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-3xl">
-          🚧 Random unsplash images for now 🚧
-        </h1>
+      <SimpleLayout command="ls ~/photos" title="photos" intro="Photos taken by me">
+        <p className="mb-8 text-sm text-warn">
+          [WIP] 🚧 Random unsplash images for now 🚧
+        </p>
         {isLoading && <LoadSpinner size={16} />}
         {error && (
-          <p className="text-2xl font-bold tracking-tight text-red-500 dark:text-red-300 sm:text-3xl">
+          <p className="text-sm text-accent">
             Error: {error.message}
           </p>
         )}
@@ -58,11 +58,11 @@ export default function Photos() {
             <li key={image.id} className="relative">
               <div
                 onClick={() => handleImageClick(image)}
-                className="aspect-h-7 aspect-w-10 group block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100"
+                className="crt aspect-h-7 aspect-w-10 group block w-full focus-within:ring-1 focus-within:ring-accent"
               >
                 <Image
                   key={image.id}
-                  className="pointer-events-none object-cover group-hover:opacity-75"
+                  className="pointer-events-none object-cover"
                   src={image.urls.small}
                   alt={image.description || 'Random Unsplash Image'}
                   width={400}
@@ -78,10 +78,10 @@ export default function Photos() {
                   </span>
                 </button>
               </div>
-              <p className="pointer-events-none mt-2 block truncate text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+              <p className="pointer-events-none mt-2 block truncate text-xs font-bold text-fg">
                 {image.description}
               </p>
-              <p className="pointer-events-none block text-sm font-medium text-zinc-500 dark:text-zinc-400">
+              <p className="pointer-events-none block truncate text-xs text-muted">
                 {image.alt_description}
               </p>
             </li>

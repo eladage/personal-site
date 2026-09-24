@@ -12,12 +12,18 @@ const RESUME = [
     logo: logoSyf,
     start: new Date('2024-11-21'),
     end: new Date(),
+    current: true,
     description: (
       <>
         <li>
           Technical Lead for a team focused on a microfrontend application for
           making payments.
         </li>
+        <li>
+          Implementing AI orchestration and agentic workflows to automate
+          development processes.
+        </li>
+        <li>Leveraging AI agents across the team&apos;s delivery lifecycle.</li>
         <li>React, Typescript, etc.</li>
       </>
     ),

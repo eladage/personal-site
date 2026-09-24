@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import clsx from 'clsx';
 
+import { AnimatedTitle } from '@/components/AnimatedTitle';
 import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
-import { SpotlightCard } from '@/components/SpotlightCard';
+import { Panel } from '@/components/Panel';
+import { Prompt } from '@/components/Prompt';
 import {
   GitHubIcon,
   InstagramIcon,
@@ -13,21 +14,33 @@ import {
 } from '@/components/SocialIcons';
 import friendsImage from '@/images/friends.jpg';
 import MailIcon from '@/icons/Mail';
-import { AnimatedTitle } from '@/components/AnimatedTitle';
 
-function SocialLink({ className, href, children, icon: Icon }) {
-  return (
-    <li className={clsx(className, 'flex')}>
-      <Link
-        href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-blue-500 dark:text-zinc-200 dark:hover:text-pink-500"
-      >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-blue-500 dark:group-hover:fill-pink-500" />
-        <span className="ml-4">{children}</span>
-      </Link>
-    </li>
-  );
-}
+const LINKS = [
+  {
+    label: 'instagram',
+    value: '@eladage',
+    href: 'https://www.instagram.com/eladage/',
+    icon: InstagramIcon,
+  },
+  {
+    label: 'github',
+    value: 'eladage',
+    href: 'https://github.com/eladage',
+    icon: GitHubIcon,
+  },
+  {
+    label: 'linkedin',
+    value: 'eric-ladage',
+    href: 'https://www.linkedin.com/in/eric-ladage/',
+    icon: LinkedInIcon,
+  },
+  {
+    label: 'email',
+    value: 'eladage@gmail.com',
+    href: 'mailto:eladage@gmail.com',
+    icon: MailIcon,
+  },
+];
 
 export default function About() {
   return (
@@ -36,72 +49,63 @@ export default function About() {
         <title>About - Eric Ladage</title>
         <meta name="description" content="Eric Ladage" />
       </Head>
-      <Container className="mt-16 sm:mt-32">
-        <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-          <div className="lg:pl-20">
-            <div className="px-2.5 lg:max-w-none">
-              <Image
-                src={friendsImage}
-                alt=""
-                sizes="(min-width: 1024px) 32rem, 20rem"
-                className="rotate-0 rounded-2xl bg-zinc-100 object-cover shadow-lg dark:bg-zinc-800 lg:rotate-3"
+      <Container className="mt-12 sm:mt-20">
+        <Prompt path="~/about" className="mb-10">
+          cat README.md
+        </Prompt>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
+          <Panel title="README.md" className="lg:col-span-3">
+            <div className="flex h-full flex-col gap-8">
+              <AnimatedTitle
+                title="Eric Ladage"
+                allowUppercase
+                showCursor
+                textSize="4xl"
               />
-            </div>
-          </div>
-          <div className="order-first h-full lg:order-first lg:row-span-2">
-            <SpotlightCard>
-              <div className="flex h-full flex-col gap-8 text-zinc-800 dark:text-zinc-100">
-                <AnimatedTitle
-                  title={'Eric Ladage'}
-                  allowUppercase
-                  textSize="4xl"
-                />
-                <div className="flex flex-col gap-4">
-                  <p>{`Been professionally writing code since around 2015. Slowly becoming not terrible at it...`}</p>
-                  <p>{`My code is being ran in hospitals all around the world. I've helped build ecommerce platforms from scratch and am currently working to build education tools for my alma mater.`}</p>
-                  <p>{`Currently living in San Clemente, CA with my girlfriend and our dog, Blueberry.`}</p>
-                </div>
-                <Button
-                  href={'/Resume.pdf'}
-                  variant="secondary"
-                  className="group mt-10 min-h-[4rem] w-full text-lg"
-                >
-                  View Resume 💼
-                </Button>
+              <div className="flex flex-col gap-4 text-sm leading-7 text-muted">
+                <p>{`Been professionally writing code since around 2015. Slowly becoming not terrible at it...`}</p>
+                <p>{`My code is being ran in hospitals all around the world. I've helped build ecommerce platforms from scratch and am currently working to build education tools for my alma mater.`}</p>
+                <p>{`Currently living in San Clemente, CA with my girlfriend and our dog, Blueberry.`}</p>
               </div>
-            </SpotlightCard>
-          </div>
-          <div className="lg:pl-20">
-            <ul role="list">
-              <SocialLink
-                href="https://www.instagram.com/eladage/"
-                icon={InstagramIcon}
-                className="mt-4"
-              >
-                Follow on Instagram
-              </SocialLink>
-              <SocialLink
-                href="https://github.com/eladage"
-                icon={GitHubIcon}
-                className="mt-4"
-              >
-                Follow on GitHub
-              </SocialLink>
-              <SocialLink
-                href="https://www.linkedin.com/in/eric-ladage/"
-                icon={LinkedInIcon}
-                className="mt-4"
-              >
-                Follow on LinkedIn
-              </SocialLink>
-              <SocialLink
-                href="mailto:eladage@gmail.com"
-                icon={MailIcon}
-                className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
-              >
-                eladage@gmail.com
-              </SocialLink>
-            </ul>
+              <Button href="/Resume.pdf" className="mt-4 w-full py-3">
+                View Resume.pdf <span aria-hidden="true">↗</span>
+              </Button>
+            </div>
+          </Panel>
+          <div className="flex flex-col gap-12 lg:col-span-2">
+            <figure>
+              <div className="crt aspect-[4/3] lg:rotate-1">
+                <Image
+                  src={friendsImage}
+                  alt=""
+                  sizes="(min-width: 1024px) 24rem, 100vw"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-2 text-xs text-faint">
+                friends.jpg
+              </figcaption>
+            </figure>
+            <Panel title="links" as="nav" aria-label="Social links">
+              <ul role="list" className="space-y-3 text-sm">
+                {LINKS.map(({ label, value, href, icon: Icon }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="group flex items-center gap-3 text-muted transition-colors hover:text-accent"
+                    >
+                      <Icon className="h-4 w-4 flex-none fill-current" />
+                      <span className="w-20 flex-none text-faint group-hover:text-accent">
+                        {label}
+                      </span>
+                      <span className="truncate text-fg group-hover:text-accent">
+                        {value}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Panel>
           </div>
         </div>
       </Container>

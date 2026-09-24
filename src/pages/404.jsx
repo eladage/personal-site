@@ -1,51 +1,60 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-import blueberry_outline from '@/images/photos/blueberry-outline.png';
+import { AsciiArt } from '@/components/AsciiArt';
 import { Container } from '@/components/Container';
-import { AnimatedTitle } from '@/components/AnimatedTitle';
+import { Prompt } from '@/components/Prompt';
+import { BLUEBERRY, NOT_FOUND } from '@/constants/ASCII';
 
 export default function PageNotFound() {
+  // read after mount: the 404 page is prerendered, so the router can't know the path
+  let [asPath, setAsPath] = useState('');
+  useEffect(() => setAsPath(window.location.pathname), []);
+
   return (
-    <Container className="mt-16 sm:mt-32">
-      <main className="relative isolate -mb-32 flex min-h-full flex-col-reverse md:flex-row">
+    <Container className="mt-12 sm:mt-24">
+      <div className="flex flex-col-reverse items-center gap-12 md:flex-row md:justify-between">
         <motion.div
-          initial={{ opacity: 0, x: -500 }}
+          initial={{ opacity: 0, x: -200 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
+          className="flex-none"
         >
-          <Image
-            src={blueberry_outline}
-            alt=""
-            width={500}
-            height={100}
-            className=""
-          />
-        </motion.div>
-        <div className="mx-auto  max-w-7xl px-6 py-32 text-center text-zinc-800  dark:text-zinc-200 sm:py-40 lg:px-8">
-          <AnimatedTitle
-            title="404"
-            allowNumbers
-            allowRerender={false}
-            textSize="4xl"
-          />
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-red-400 sm:text-5xl">
-            Page not found
-          </h1>
-          <p className="mt-4 text-base text-zinc-800 dark:text-zinc-200 sm:mt-6">
-            You are lost.
-          </p>
-          <div className="mt-10 flex justify-center">
-            <Link
-              href="/"
-              className="text-sm font-semibold leading-7 text-zinc-800 dark:text-zinc-200"
+          <figure>
+            <pre
+              role="img"
+              aria-label="ASCII portrait of Blueberry the dog"
+              className="ascii text-[min(1.8vw,8px)] leading-[1.2] text-muted"
             >
-              <span aria-hidden="true">&larr;</span> Back to home
-            </Link>
-          </div>
+              {BLUEBERRY}
+            </pre>
+            <figcaption className="mt-3 text-xs text-faint">
+              blueberry.txt <span className="text-muted">— also lost</span>
+            </figcaption>
+          </figure>
+        </motion.div>
+        <div className="min-w-0 flex-auto md:max-w-lg">
+          <Prompt>cd {asPath}</Prompt>
+          <p className="mt-2 break-all text-sm text-accent">
+            bash: cd: {asPath}: No such file or directory
+          </p>
+          <h1 className="mt-10">
+            <AsciiArt
+              art={NOT_FOUND}
+              label="404"
+              className="text-[min(3.2vw,18px)]"
+            />
+            <span className="mt-6 block text-2xl font-extrabold text-fg sm:text-3xl">
+              Page not found
+            </span>
+          </h1>
+          <p className="mt-4 text-sm text-muted">You are lost.</p>
+          <Link href="/" className="term-link mt-10 inline-block text-sm">
+            <span aria-hidden="true">&larr;</span> cd ~
+          </Link>
         </div>
-      </main>
+      </div>
     </Container>
   );
 }
