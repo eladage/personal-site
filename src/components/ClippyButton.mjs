@@ -10,6 +10,8 @@ import {
 } from './clippyFacts.mjs';
 
 const EDGE_MARGIN = 16;
+// clippyts' Animator.States.EXITED; the class isn't exported
+const ANIMATION_EXITED = 0;
 const GREET_DELAY = 1000;
 const IDLE_TIMEOUT = 30000;
 const ACTIVITY_EVENTS = ['scroll', 'pointermove', 'keydown', 'touchstart'];
@@ -118,6 +120,19 @@ function listenForPokes(agent, onPoke) {
   el.addEventListener('mousedown', block, true);
   el.addEventListener('dblclick', block, true);
   el.addEventListener('click', onPoke);
+}
+
+// Never play() an Idle* animation. play() retries whenever the current
+// animation is idle, and when the new one is idle too, each retry schedules
+// another as a microtask, forever, which freezes the page. So queue the snooze
+// by hand and start it on the animator directly. It loops until silence()
+// exits it, which also frees the queue.
+function snooze(agent) {
+  agent._addToQueue((complete) => {
+    agent._animator.showAnimation('IdleSnooze', (name, state) => {
+      if (state === ANIMATION_EXITED) complete();
+    });
+  });
 }
 
 function pick(items) {
@@ -359,7 +374,7 @@ export default function ClippyButton({ title }) {
       asleep = true;
       silence(agent);
       agent.speak('Zzz…');
-      agent.play('IdleSnooze', 0);
+      snooze(agent);
     }
 
     function onActivity() {

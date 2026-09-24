@@ -41,18 +41,18 @@ export function AnimatedTitle({
 
   const textSizeClass = textSizeMapping[textSize];
 
-  const randomCharacter = () => {
-    let characters = 'abcdefghijklmnopqrstuvwxyz.';
-    if (allowUppercase) {
-      characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ';
-    }
-    if (allowNumbers) {
-      characters += '0123456789';
-    }
-    return characters.charAt(Math.floor(Math.random() * characters.length));
-  };
-
   useEffect(() => {
+    const randomCharacter = () => {
+      let characters = 'abcdefghijklmnopqrstuvwxyz.';
+      if (allowUppercase) {
+        characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ';
+      }
+      if (allowNumbers) {
+        characters += '0123456789';
+      }
+      return characters.charAt(Math.floor(Math.random() * characters.length));
+    };
+
     if (!completed) {
       const newTitle = [...displayTitle];
       let allCharactersSet = true;
@@ -81,7 +81,14 @@ export function AnimatedTitle({
       clearTimeout(timeoutRef.current);
       clearTimeout(timer);
     };
-  }, [displayTitle, title, completed, isBlinking]);
+  }, [
+    displayTitle,
+    title,
+    completed,
+    isBlinking,
+    allowUppercase,
+    allowNumbers,
+  ]);
 
   const handleMouseOver = () => {
     if (completed && allowRerender) {
